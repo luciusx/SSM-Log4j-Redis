@@ -1,0 +1,96 @@
+* {margin:0;padding:0;}
+.ifrmebody {padding:0;margin:0;}
+.clear {clear:both;}
+/*================查询条件的布局相关=======================*//*  总共分为 5 列的Table进行布局   */.searchTable {width:100%}
+.searchBlank {width:250px;}
+.searchContent {width:350px;}
+.searchContent label {width:100px;display:inline-block;vertical-align:middle;overflow:hidden;text-align:justify;text-justify:distribute-all-lines;/*ie6-8*/text-align-last:justify;/* ie9*/-moz-text-align-last:justify;/*ff*/-webkit-text-align-last:justify;/*chrome 20+*/}
+.editeContent {width:100%;}
+.editeContent label {width:150px;display:inline-block;vertical-align:middle;overflow:hidden;text-align:justify;text-justify:distribute-all-lines;/*ie6-8*/text-align-last:justify;/* ie9*/-moz-text-align-last:justify;/*ff*/-webkit-text-align-last:justify;/*chrome 20+*/}
+.searchTr td {padding-top:3px;padding-bottom:3px;}
+/*  占一列的input宽度 */.inputOne {width:150px;}
+.inputTwo {width:230px;}
+.inputThree {width:330px;}
+.inputMini {width:100px;}
+.comboboxMini {width:50px;}
+/*================查询条件的布局相关=======================*/
+#reset,#searchs,#commit,#edit {display:inline-block;width:88px;font:36px;}
+/*  ==========主框架样式============    */
+#divHeader {/*  头部样式*/font-family:Microsoft YaHei;height:50px;background:-webkit-linear-gradient(top,#f0f4f8,#e3eaf3);padding:10px;overflow:hidden;}
+.header1 {overflow:hidden;/*  background-image:url('/Resource/image/bg2.gif');*/    background-repeat:repeat-x;}
+.header2 {/*  background-image:url('/Resource/image/bg1.gif');*/    background-repeat:no-repeat;background-position-x:right;}
+/*  公司的LOGO位置的样式 （可以定义为图片或者其它） */
+.logo {float:left;color:#0e2d5f;}
+.contact {text-align:right;padding:5px;}
+.prompt {color:#666;margin:0 10px;}
+.headerMenu ul {margin-top:5px;margin-bottom:5px;list-style:none;}
+.headerMenu a:link,.headerMenu a:visited {text-decoration:none;}
+.headerMenu a:hover {text-decoration:underline;}
+.headerMenu ul li {margin:0 5px;float:right;display:block;}
+.headerMenu ul li a:link,.headerMenu ul li a:visited {color:#666;}
+.headerMenuDiv {width:1px;background:#999;}
+/* -------------------样式补充------------------- */.layout-panel-west {color:#45759f !important;border-color:#d4dce5;}
+.layout-panel-west a:HOVER {}
+.layout-panel-west .tree-node-selected {background-color:#405e7a;color:white;}
+.layout-panel-west .tree-node-hover {background-color:#405e7a;}
+/* 所有菜单下的 panel-header 的样式 */
+.layout-panel-west .panel-header,.layout-expand-west .panel-header {background:-webkit-linear-gradient(top,#f0f4f8,#e3eaf3);}
+/* 所有菜单下的 panel-body 的样式 */
+.layout-panel-west .panel-body,.layout-expand-west .panel-body {background:#f4f4f4;}
+/*  =============================主框架样式===============================    *//* 列表无数据提示DIV属性 */
+.datagrid_nodata_tip {text-align:center;color:red;}
+.nodata_tip {text-align:center;color:red;}
+.com-button {display:inline-block;width:88px;font:36px;}
+/*  table 表格布局属性  */
+.showTable {width:100%;}
+.showTable td {padding-top:8px;vertical-align:top;}
+.showTable td label {margin-left:15px;font-size:16px;}
+.infoDiv {margin-left:40px;margin-top:10px;margin-bottom:5px;}
+/*  金额、积分颜色  *//*  正数金额 */
+.positiveColor {color:green;}
+/*  负数金额 */
+.negativeColor {color:red;}
+/*  冻结金额  */
+.freezeColor {color:blue;}
+/*tabHeader统一样式*/.tabHeader {display:table;border-collapse:separate;width:100%;}
+.row {display:table-row;}
+.row div {display:table-cell;height:40px;line-height:40px;text-align:center;}
+.row_left {width:130px;text-align:center;cursor:pointer;background:#fff;border-left:1px solid #cccccc;border-right:1px solid #cccccc;border-top:1px solid #cccccc;border-bottom:1px solid #cccccc}
+.row_center {width:130px;text-align:center;cursor:pointer;background:#fff;border-left:0px solid #000;border-right:1px solid #cccccc;border-top:1px solid #cccccc;border-bottom:1px solid #cccccc}
+.row_right {text-align:center;background:#fff;border-left:0px solid #000;border-right:1px solid #cccccc;border-top:1px solid #cccccc;border-bottom:1px solid #cccccc}
+.onfoucsme {background:#E0ECFF;}
+.rowBanner {background:#E0ECFF;font:33px;font-weight:bold;padding:5px;}
+/*搜索面板统一样式*/#searchMain {padding:10px}
+#searchDiv {display:table;border-collapse:separate;width:100%;}
+.searchrow {display:table-row;}
+.searchrow div {display:table-cell;height:30px;line-height:30px;}
+.one {width:35%;}
+.two {width:35%;}
+.three {}
+#searchDiv label {display:inline-block;width:100px;text-align:right;}
+#searchDiv select {width:120px;}
+#searchDiv input {width:auto;}
+.showImg {margin:0 auto;/*非IE的主流浏览器识别的垂直居中的方法*/ display:table-cell;vertical-align:middle;/*设置水平居中*/ text-align:center;/* 针对IE的Hack */ *display:block;*font-size:175px;/*约为高度的0.873，200*0.873 约为175*/ *font-family:Arial;/*防止非utf-8引起的hack失效问题，如gbk编码*/ width:400px;height:300px;line-height:300px;}
+.showImg img {/*设置图片垂直居中*/ vertical-align:middle;}
+.Showmsg {margin-bottom:15px;}
+.Showmsg > span {margin-left:50px;}
+/*使用协议、关于我们样式 p 设置margin为对象上下间距10px*/
+#txtcontet {font-size:13px;font-family:"Microsoft YaHei" ! important;line-height:25px}
+#txtcontet p {text-indent:20px;margin:10px 0}
+.buttonstyle {display:inline-block;width:88px;font:36px;}
+.red {color:red;padding:5px;}
+.editor {font-size:13px;font-weight:normal;}
+.editor input {padding:4px 0;}
+.editor td {padding:3px;}
+a {text-decoration:none;}
+/*input .textbox {min-height:20px;padding:4px;width:250px;line-height:20px;}
+*/.edit-table {}
+.edit-table input.textbox {height:20px;width:250px;margin:5px 0;}
+.frame {margin:10px 20px 10px 3px;line-height:25px;border:1px solid #dedede;border-radius:5px;padding:5px;*padding-bottom:20px;font-size:11px;color:#333333;}
+/*仿easyui表格*/table.prettytable {font-family:verdana,arial,sans-serif;font-size:11px;color:#333333;border-width:1px;border-color:#999999;border-collapse:collapse;padding:5px;}
+table.prettytable th {background-color:#E1EDFF;border-width:1px;padding:8px;border-style:solid;border-color:#95B8E7;text-align:center;}
+table.prettytable tr {background-color:#EEF5FF;}
+table.prettytable td {border-width:1px;padding:8px;border-style:solid;border-color:#95B8E7;}
+/*上传图片*/.img-list p {position:relative;width:100px;height:100px;border:none;float:left;margin-left:5px;}
+.img-list img {position:absolute;z-index:1;}
+.img-list span {position:absolute;z-index:10;right:0;top:0;display:block;width:12px;height:12px;line-height:10px;overflow:hidden;text-align:center;border-left:1px solid #ccc;border-bottom:1px solid #ccc;color:#f00;background:#fff;cursor:pointer;}

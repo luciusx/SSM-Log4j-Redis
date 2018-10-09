@@ -1,0 +1,25 @@
+﻿body,html {margin:0;padding:0;}
+.logo {padding:15px;font-size:32px;float:left;color:#0e2d5f;}
+.contact {text-align:right;height:65px;padding:10px;}
+.prompt {color:#666;margin:0 15px;}
+.headerMenu ul {margin-top:10px;margin-bottom:10px;list-style:none;}
+.headerMenu a:link,.headerMenu a:visited {text-decoration:none;}
+.headerMenu a:hover {text-decoration:underline;}
+.headerMenu ul li {margin:0 10px;float:right;display:block;}
+.headerMenu ul li a:link,.headerMenu ul li a:visited {color:#666;}
+.headerMenuDiv {width:1px;height:13px;background:#999;}
+.footer {height:25px;color:#707070;text-align:center;font-size:10px;padding-top:8px;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-border-box:border-box;background-image:url('/Resource/image/bg3.png');background-repeat:repeat-x;background-position:0 -182px;}
+/* 主页面-菜单栏、导航栏、内容栏的宽度和高度设置 */#divMenuBar {width:200px;}
+#divHeader {height:70px;overflow:hidden;}
+#divFooter {height:25px;}
+#divTitleBar {padding:10px;}
+
+.navMenu{float:left; width:800px; overflow:hidden; height:40px; padding:0; margin-left:65px; margin-top: 40px; border-top:1px solid #95B8E7; border-left:1px solid #95B8E7; border-right:1px solid #95B8E7;-moz-border-radius:  10px 10px 0 0;/* Gecko browsers */
+    -webkit-border-radius: 10px 10px 0 0;   /* Webkit browsers */
+    border-radius: 10px 10px 0 0;            /* W3C syntax */}
+ul#nav{ width:100%; height:60px; background:#E0ECFF;margin:0 auto} 
+ul#nav li{display:inline; height:60px} 
+ul#nav li a{display:inline-block; padding:0 20px; height:40px; line-height:40px;color:#0E2D5F; font-weight:bold; font-size:14px} 
+ul#nav li a:hover{background:#F4F4F4}/*设置鼠标滑过或悬停时变化的背景颜色*/ 
+ul#nav li a.selected{background:#F4F4F4}
+		    

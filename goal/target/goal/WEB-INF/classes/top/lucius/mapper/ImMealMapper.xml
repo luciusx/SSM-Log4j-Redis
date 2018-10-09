@@ -1,0 +1,670 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.lucius.mapper.ImMealMapper" >
+  <resultMap id="BaseResultMap" type="top.lucius.model.ImMeal" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="type_id" property="typeId" jdbcType="INTEGER" />
+    <result column="booking_method" property="bookingMethod" jdbcType="BIT" />
+    <result column="list_pic" property="listPic" jdbcType="VARCHAR" />
+    <result column="detail_pic" property="detailPic" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="key_function" property="keyFunction" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="num" property="num" jdbcType="INTEGER" />
+    <result column="market_price" property="marketPrice" jdbcType="DECIMAL" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="time_day" property="timeDay" jdbcType="INTEGER" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="add_time" property="addTime" jdbcType="INTEGER" />
+    <result column="orders" property="orders" jdbcType="INTEGER" />
+    <result column="order_sn" property="orderSn" jdbcType="VARCHAR" />
+    <result column="project_id" property="projectId" jdbcType="INTEGER" />
+    <result column="is_check" property="isCheck" jdbcType="BIT" />
+    <result column="check_time" property="checkTime" jdbcType="INTEGER" />
+    <result column="is_delete" property="isDelete" jdbcType="BIT" />
+    <result column="service_time" property="serviceTime" jdbcType="SMALLINT" />
+    <result column="property" property="property" jdbcType="TINYINT" />
+    <result column="clicks" property="clicks" jdbcType="INTEGER" />
+    <result column="is_hot" property="isHot" jdbcType="TINYINT" />
+    <result column="active_price_status" property="activePriceStatus" jdbcType="BIT" />
+    <result column="active_buy_status" property="activeBuyStatus" jdbcType="BIT" />
+    <result column="active_start_at" property="activeStartAt" jdbcType="INTEGER" />
+    <result column="active_end_in" property="activeEndIn" jdbcType="INTEGER" />
+    <result column="active_price" property="activePrice" jdbcType="REAL" />
+    <result column="active_buy_num" property="activeBuyNum" jdbcType="INTEGER" />
+    <result column="meal_type" property="mealType" jdbcType="INTEGER" />
+    <result column="spec_num" property="specNum" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, name, type_id, booking_method, list_pic, detail_pic, description, key_function, 
+    price, num, market_price, sort, status, time_day, shop_id, add_time, orders, order_sn, 
+    project_id, is_check, check_time, is_delete, service_time, property, clicks, is_hot, 
+    active_price_status, active_buy_status, active_start_at, active_end_in, active_price, 
+    active_buy_num, meal_type, spec_num
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="top.lucius.model.ImMealExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from im_meal
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from im_meal
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from im_meal
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="top.lucius.model.ImMealExample" >
+    delete from im_meal
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="top.lucius.model.ImMeal" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into im_meal (name, type_id, booking_method, 
+      list_pic, detail_pic, description, 
+      key_function, price, num, 
+      market_price, sort, status, 
+      time_day, shop_id, add_time, 
+      orders, order_sn, project_id, 
+      is_check, check_time, is_delete, 
+      service_time, property, clicks, 
+      is_hot, active_price_status, active_buy_status, 
+      active_start_at, active_end_in, active_price, 
+      active_buy_num, meal_type, spec_num
+      )
+    values (#{name,jdbcType=VARCHAR}, #{typeId,jdbcType=INTEGER}, #{bookingMethod,jdbcType=BIT}, 
+      #{listPic,jdbcType=VARCHAR}, #{detailPic,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{keyFunction,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{num,jdbcType=INTEGER}, 
+      #{marketPrice,jdbcType=DECIMAL}, #{sort,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{timeDay,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, #{addTime,jdbcType=INTEGER}, 
+      #{orders,jdbcType=INTEGER}, #{orderSn,jdbcType=VARCHAR}, #{projectId,jdbcType=INTEGER}, 
+      #{isCheck,jdbcType=BIT}, #{checkTime,jdbcType=INTEGER}, #{isDelete,jdbcType=BIT}, 
+      #{serviceTime,jdbcType=SMALLINT}, #{property,jdbcType=TINYINT}, #{clicks,jdbcType=INTEGER}, 
+      #{isHot,jdbcType=TINYINT}, #{activePriceStatus,jdbcType=BIT}, #{activeBuyStatus,jdbcType=BIT}, 
+      #{activeStartAt,jdbcType=INTEGER}, #{activeEndIn,jdbcType=INTEGER}, #{activePrice,jdbcType=REAL}, 
+      #{activeBuyNum,jdbcType=INTEGER}, #{mealType,jdbcType=INTEGER}, #{specNum,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="top.lucius.model.ImMeal" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into im_meal
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="typeId != null" >
+        type_id,
+      </if>
+      <if test="bookingMethod != null" >
+        booking_method,
+      </if>
+      <if test="listPic != null" >
+        list_pic,
+      </if>
+      <if test="detailPic != null" >
+        detail_pic,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="keyFunction != null" >
+        key_function,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+      <if test="marketPrice != null" >
+        market_price,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="timeDay != null" >
+        time_day,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="orders != null" >
+        orders,
+      </if>
+      <if test="orderSn != null" >
+        order_sn,
+      </if>
+      <if test="projectId != null" >
+        project_id,
+      </if>
+      <if test="isCheck != null" >
+        is_check,
+      </if>
+      <if test="checkTime != null" >
+        check_time,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="serviceTime != null" >
+        service_time,
+      </if>
+      <if test="property != null" >
+        property,
+      </if>
+      <if test="clicks != null" >
+        clicks,
+      </if>
+      <if test="isHot != null" >
+        is_hot,
+      </if>
+      <if test="activePriceStatus != null" >
+        active_price_status,
+      </if>
+      <if test="activeBuyStatus != null" >
+        active_buy_status,
+      </if>
+      <if test="activeStartAt != null" >
+        active_start_at,
+      </if>
+      <if test="activeEndIn != null" >
+        active_end_in,
+      </if>
+      <if test="activePrice != null" >
+        active_price,
+      </if>
+      <if test="activeBuyNum != null" >
+        active_buy_num,
+      </if>
+      <if test="mealType != null" >
+        meal_type,
+      </if>
+      <if test="specNum != null" >
+        spec_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null" >
+        #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="bookingMethod != null" >
+        #{bookingMethod,jdbcType=BIT},
+      </if>
+      <if test="listPic != null" >
+        #{listPic,jdbcType=VARCHAR},
+      </if>
+      <if test="detailPic != null" >
+        #{detailPic,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="keyFunction != null" >
+        #{keyFunction,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="marketPrice != null" >
+        #{marketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="timeDay != null" >
+        #{timeDay,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="orders != null" >
+        #{orders,jdbcType=INTEGER},
+      </if>
+      <if test="orderSn != null" >
+        #{orderSn,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=INTEGER},
+      </if>
+      <if test="isCheck != null" >
+        #{isCheck,jdbcType=BIT},
+      </if>
+      <if test="checkTime != null" >
+        #{checkTime,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=BIT},
+      </if>
+      <if test="serviceTime != null" >
+        #{serviceTime,jdbcType=SMALLINT},
+      </if>
+      <if test="property != null" >
+        #{property,jdbcType=TINYINT},
+      </if>
+      <if test="clicks != null" >
+        #{clicks,jdbcType=INTEGER},
+      </if>
+      <if test="isHot != null" >
+        #{isHot,jdbcType=TINYINT},
+      </if>
+      <if test="activePriceStatus != null" >
+        #{activePriceStatus,jdbcType=BIT},
+      </if>
+      <if test="activeBuyStatus != null" >
+        #{activeBuyStatus,jdbcType=BIT},
+      </if>
+      <if test="activeStartAt != null" >
+        #{activeStartAt,jdbcType=INTEGER},
+      </if>
+      <if test="activeEndIn != null" >
+        #{activeEndIn,jdbcType=INTEGER},
+      </if>
+      <if test="activePrice != null" >
+        #{activePrice,jdbcType=REAL},
+      </if>
+      <if test="activeBuyNum != null" >
+        #{activeBuyNum,jdbcType=INTEGER},
+      </if>
+      <if test="mealType != null" >
+        #{mealType,jdbcType=INTEGER},
+      </if>
+      <if test="specNum != null" >
+        #{specNum,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="top.lucius.model.ImMealExample" resultType="java.lang.Integer" >
+    select count(*) from im_meal
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update im_meal
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.typeId != null" >
+        type_id = #{record.typeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.bookingMethod != null" >
+        booking_method = #{record.bookingMethod,jdbcType=BIT},
+      </if>
+      <if test="record.listPic != null" >
+        list_pic = #{record.listPic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.detailPic != null" >
+        detail_pic = #{record.detailPic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.keyFunction != null" >
+        key_function = #{record.keyFunction,jdbcType=VARCHAR},
+      </if>
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.num != null" >
+        num = #{record.num,jdbcType=INTEGER},
+      </if>
+      <if test="record.marketPrice != null" >
+        market_price = #{record.marketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.sort != null" >
+        sort = #{record.sort,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.timeDay != null" >
+        time_day = #{record.timeDay,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopId != null" >
+        shop_id = #{record.shopId,jdbcType=INTEGER},
+      </if>
+      <if test="record.addTime != null" >
+        add_time = #{record.addTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.orders != null" >
+        orders = #{record.orders,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderSn != null" >
+        order_sn = #{record.orderSn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectId != null" >
+        project_id = #{record.projectId,jdbcType=INTEGER},
+      </if>
+      <if test="record.isCheck != null" >
+        is_check = #{record.isCheck,jdbcType=BIT},
+      </if>
+      <if test="record.checkTime != null" >
+        check_time = #{record.checkTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.isDelete != null" >
+        is_delete = #{record.isDelete,jdbcType=BIT},
+      </if>
+      <if test="record.serviceTime != null" >
+        service_time = #{record.serviceTime,jdbcType=SMALLINT},
+      </if>
+      <if test="record.property != null" >
+        property = #{record.property,jdbcType=TINYINT},
+      </if>
+      <if test="record.clicks != null" >
+        clicks = #{record.clicks,jdbcType=INTEGER},
+      </if>
+      <if test="record.isHot != null" >
+        is_hot = #{record.isHot,jdbcType=TINYINT},
+      </if>
+      <if test="record.activePriceStatus != null" >
+        active_price_status = #{record.activePriceStatus,jdbcType=BIT},
+      </if>
+      <if test="record.activeBuyStatus != null" >
+        active_buy_status = #{record.activeBuyStatus,jdbcType=BIT},
+      </if>
+      <if test="record.activeStartAt != null" >
+        active_start_at = #{record.activeStartAt,jdbcType=INTEGER},
+      </if>
+      <if test="record.activeEndIn != null" >
+        active_end_in = #{record.activeEndIn,jdbcType=INTEGER},
+      </if>
+      <if test="record.activePrice != null" >
+        active_price = #{record.activePrice,jdbcType=REAL},
+      </if>
+      <if test="record.activeBuyNum != null" >
+        active_buy_num = #{record.activeBuyNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.mealType != null" >
+        meal_type = #{record.mealType,jdbcType=INTEGER},
+      </if>
+      <if test="record.specNum != null" >
+        spec_num = #{record.specNum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update im_meal
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      type_id = #{record.typeId,jdbcType=INTEGER},
+      booking_method = #{record.bookingMethod,jdbcType=BIT},
+      list_pic = #{record.listPic,jdbcType=VARCHAR},
+      detail_pic = #{record.detailPic,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      key_function = #{record.keyFunction,jdbcType=VARCHAR},
+      price = #{record.price,jdbcType=DECIMAL},
+      num = #{record.num,jdbcType=INTEGER},
+      market_price = #{record.marketPrice,jdbcType=DECIMAL},
+      sort = #{record.sort,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      time_day = #{record.timeDay,jdbcType=INTEGER},
+      shop_id = #{record.shopId,jdbcType=INTEGER},
+      add_time = #{record.addTime,jdbcType=INTEGER},
+      orders = #{record.orders,jdbcType=INTEGER},
+      order_sn = #{record.orderSn,jdbcType=VARCHAR},
+      project_id = #{record.projectId,jdbcType=INTEGER},
+      is_check = #{record.isCheck,jdbcType=BIT},
+      check_time = #{record.checkTime,jdbcType=INTEGER},
+      is_delete = #{record.isDelete,jdbcType=BIT},
+      service_time = #{record.serviceTime,jdbcType=SMALLINT},
+      property = #{record.property,jdbcType=TINYINT},
+      clicks = #{record.clicks,jdbcType=INTEGER},
+      is_hot = #{record.isHot,jdbcType=TINYINT},
+      active_price_status = #{record.activePriceStatus,jdbcType=BIT},
+      active_buy_status = #{record.activeBuyStatus,jdbcType=BIT},
+      active_start_at = #{record.activeStartAt,jdbcType=INTEGER},
+      active_end_in = #{record.activeEndIn,jdbcType=INTEGER},
+      active_price = #{record.activePrice,jdbcType=REAL},
+      active_buy_num = #{record.activeBuyNum,jdbcType=INTEGER},
+      meal_type = #{record.mealType,jdbcType=INTEGER},
+      spec_num = #{record.specNum,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="top.lucius.model.ImMeal" >
+    update im_meal
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null" >
+        type_id = #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="bookingMethod != null" >
+        booking_method = #{bookingMethod,jdbcType=BIT},
+      </if>
+      <if test="listPic != null" >
+        list_pic = #{listPic,jdbcType=VARCHAR},
+      </if>
+      <if test="detailPic != null" >
+        detail_pic = #{detailPic,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="keyFunction != null" >
+        key_function = #{keyFunction,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="num != null" >
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="marketPrice != null" >
+        market_price = #{marketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="timeDay != null" >
+        time_day = #{timeDay,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="orders != null" >
+        orders = #{orders,jdbcType=INTEGER},
+      </if>
+      <if test="orderSn != null" >
+        order_sn = #{orderSn,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        project_id = #{projectId,jdbcType=INTEGER},
+      </if>
+      <if test="isCheck != null" >
+        is_check = #{isCheck,jdbcType=BIT},
+      </if>
+      <if test="checkTime != null" >
+        check_time = #{checkTime,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=BIT},
+      </if>
+      <if test="serviceTime != null" >
+        service_time = #{serviceTime,jdbcType=SMALLINT},
+      </if>
+      <if test="property != null" >
+        property = #{property,jdbcType=TINYINT},
+      </if>
+      <if test="clicks != null" >
+        clicks = #{clicks,jdbcType=INTEGER},
+      </if>
+      <if test="isHot != null" >
+        is_hot = #{isHot,jdbcType=TINYINT},
+      </if>
+      <if test="activePriceStatus != null" >
+        active_price_status = #{activePriceStatus,jdbcType=BIT},
+      </if>
+      <if test="activeBuyStatus != null" >
+        active_buy_status = #{activeBuyStatus,jdbcType=BIT},
+      </if>
+      <if test="activeStartAt != null" >
+        active_start_at = #{activeStartAt,jdbcType=INTEGER},
+      </if>
+      <if test="activeEndIn != null" >
+        active_end_in = #{activeEndIn,jdbcType=INTEGER},
+      </if>
+      <if test="activePrice != null" >
+        active_price = #{activePrice,jdbcType=REAL},
+      </if>
+      <if test="activeBuyNum != null" >
+        active_buy_num = #{activeBuyNum,jdbcType=INTEGER},
+      </if>
+      <if test="mealType != null" >
+        meal_type = #{mealType,jdbcType=INTEGER},
+      </if>
+      <if test="specNum != null" >
+        spec_num = #{specNum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.lucius.model.ImMeal" >
+    update im_meal
+    set name = #{name,jdbcType=VARCHAR},
+      type_id = #{typeId,jdbcType=INTEGER},
+      booking_method = #{bookingMethod,jdbcType=BIT},
+      list_pic = #{listPic,jdbcType=VARCHAR},
+      detail_pic = #{detailPic,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      key_function = #{keyFunction,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      num = #{num,jdbcType=INTEGER},
+      market_price = #{marketPrice,jdbcType=DECIMAL},
+      sort = #{sort,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      time_day = #{timeDay,jdbcType=INTEGER},
+      shop_id = #{shopId,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=INTEGER},
+      orders = #{orders,jdbcType=INTEGER},
+      order_sn = #{orderSn,jdbcType=VARCHAR},
+      project_id = #{projectId,jdbcType=INTEGER},
+      is_check = #{isCheck,jdbcType=BIT},
+      check_time = #{checkTime,jdbcType=INTEGER},
+      is_delete = #{isDelete,jdbcType=BIT},
+      service_time = #{serviceTime,jdbcType=SMALLINT},
+      property = #{property,jdbcType=TINYINT},
+      clicks = #{clicks,jdbcType=INTEGER},
+      is_hot = #{isHot,jdbcType=TINYINT},
+      active_price_status = #{activePriceStatus,jdbcType=BIT},
+      active_buy_status = #{activeBuyStatus,jdbcType=BIT},
+      active_start_at = #{activeStartAt,jdbcType=INTEGER},
+      active_end_in = #{activeEndIn,jdbcType=INTEGER},
+      active_price = #{activePrice,jdbcType=REAL},
+      active_buy_num = #{activeBuyNum,jdbcType=INTEGER},
+      meal_type = #{mealType,jdbcType=INTEGER},
+      spec_num = #{specNum,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

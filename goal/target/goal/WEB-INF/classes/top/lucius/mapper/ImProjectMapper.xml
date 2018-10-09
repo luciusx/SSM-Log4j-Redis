@@ -1,0 +1,638 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.lucius.mapper.ImProjectMapper" >
+  <resultMap id="BaseResultMap" type="top.lucius.model.ImProject" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="booking_method" property="bookingMethod" jdbcType="BIT" />
+    <result column="beautician_id" property="beauticianId" jdbcType="INTEGER" />
+    <result column="service_time" property="serviceTime" jdbcType="INTEGER" />
+    <result column="key_function" property="keyFunction" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="market_price" property="marketPrice" jdbcType="DECIMAL" />
+    <result column="clicks" property="clicks" jdbcType="INTEGER" />
+    <result column="orders" property="orders" jdbcType="INTEGER" />
+    <result column="type_id" property="typeId" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="add_time" property="addTime" jdbcType="INTEGER" />
+    <result column="default_pic" property="defaultPic" jdbcType="VARCHAR" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="is_ivyspa" property="isIvyspa" jdbcType="TINYINT" />
+    <result column="is_delete" property="isDelete" jdbcType="BIT" />
+    <result column="property" property="property" jdbcType="BIT" />
+    <result column="is_hot" property="isHot" jdbcType="BIT" />
+    <result column="source_pic" property="sourcePic" jdbcType="VARCHAR" />
+    <result column="list_pic" property="listPic" jdbcType="VARCHAR" />
+    <result column="details_pic" property="detailsPic" jdbcType="VARCHAR" />
+    <result column="hot_pic" property="hotPic" jdbcType="VARCHAR" />
+    <result column="active_price_status" property="activePriceStatus" jdbcType="BIT" />
+    <result column="active_buy_status" property="activeBuyStatus" jdbcType="BIT" />
+    <result column="active_start_at" property="activeStartAt" jdbcType="INTEGER" />
+    <result column="active_end_in" property="activeEndIn" jdbcType="INTEGER" />
+    <result column="active_price" property="activePrice" jdbcType="REAL" />
+    <result column="active_buy_num" property="activeBuyNum" jdbcType="BIT" />
+    <result column="project_type" property="projectType" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, name, booking_method, beautician_id, service_time, key_function, description, 
+    price, market_price, clicks, orders, type_id, status, sort, add_time, default_pic, 
+    shop_id, is_ivyspa, is_delete, property, is_hot, source_pic, list_pic, details_pic, 
+    hot_pic, active_price_status, active_buy_status, active_start_at, active_end_in, 
+    active_price, active_buy_num, project_type
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="top.lucius.model.ImProjectExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from im_project
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from im_project
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from im_project
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="top.lucius.model.ImProjectExample" >
+    delete from im_project
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="top.lucius.model.ImProject" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into im_project (name, booking_method, beautician_id, 
+      service_time, key_function, description, 
+      price, market_price, clicks, 
+      orders, type_id, status, 
+      sort, add_time, default_pic, 
+      shop_id, is_ivyspa, is_delete, 
+      property, is_hot, source_pic, 
+      list_pic, details_pic, hot_pic, 
+      active_price_status, active_buy_status, active_start_at, 
+      active_end_in, active_price, active_buy_num, 
+      project_type)
+    values (#{name,jdbcType=VARCHAR}, #{bookingMethod,jdbcType=BIT}, #{beauticianId,jdbcType=INTEGER}, 
+      #{serviceTime,jdbcType=INTEGER}, #{keyFunction,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DECIMAL}, #{marketPrice,jdbcType=DECIMAL}, #{clicks,jdbcType=INTEGER}, 
+      #{orders,jdbcType=INTEGER}, #{typeId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{sort,jdbcType=INTEGER}, #{addTime,jdbcType=INTEGER}, #{defaultPic,jdbcType=VARCHAR}, 
+      #{shopId,jdbcType=INTEGER}, #{isIvyspa,jdbcType=TINYINT}, #{isDelete,jdbcType=BIT}, 
+      #{property,jdbcType=BIT}, #{isHot,jdbcType=BIT}, #{sourcePic,jdbcType=VARCHAR}, 
+      #{listPic,jdbcType=VARCHAR}, #{detailsPic,jdbcType=VARCHAR}, #{hotPic,jdbcType=VARCHAR}, 
+      #{activePriceStatus,jdbcType=BIT}, #{activeBuyStatus,jdbcType=BIT}, #{activeStartAt,jdbcType=INTEGER}, 
+      #{activeEndIn,jdbcType=INTEGER}, #{activePrice,jdbcType=REAL}, #{activeBuyNum,jdbcType=BIT}, 
+      #{projectType,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="top.lucius.model.ImProject" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into im_project
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="bookingMethod != null" >
+        booking_method,
+      </if>
+      <if test="beauticianId != null" >
+        beautician_id,
+      </if>
+      <if test="serviceTime != null" >
+        service_time,
+      </if>
+      <if test="keyFunction != null" >
+        key_function,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="marketPrice != null" >
+        market_price,
+      </if>
+      <if test="clicks != null" >
+        clicks,
+      </if>
+      <if test="orders != null" >
+        orders,
+      </if>
+      <if test="typeId != null" >
+        type_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="defaultPic != null" >
+        default_pic,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="isIvyspa != null" >
+        is_ivyspa,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="property != null" >
+        property,
+      </if>
+      <if test="isHot != null" >
+        is_hot,
+      </if>
+      <if test="sourcePic != null" >
+        source_pic,
+      </if>
+      <if test="listPic != null" >
+        list_pic,
+      </if>
+      <if test="detailsPic != null" >
+        details_pic,
+      </if>
+      <if test="hotPic != null" >
+        hot_pic,
+      </if>
+      <if test="activePriceStatus != null" >
+        active_price_status,
+      </if>
+      <if test="activeBuyStatus != null" >
+        active_buy_status,
+      </if>
+      <if test="activeStartAt != null" >
+        active_start_at,
+      </if>
+      <if test="activeEndIn != null" >
+        active_end_in,
+      </if>
+      <if test="activePrice != null" >
+        active_price,
+      </if>
+      <if test="activeBuyNum != null" >
+        active_buy_num,
+      </if>
+      <if test="projectType != null" >
+        project_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="bookingMethod != null" >
+        #{bookingMethod,jdbcType=BIT},
+      </if>
+      <if test="beauticianId != null" >
+        #{beauticianId,jdbcType=INTEGER},
+      </if>
+      <if test="serviceTime != null" >
+        #{serviceTime,jdbcType=INTEGER},
+      </if>
+      <if test="keyFunction != null" >
+        #{keyFunction,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="marketPrice != null" >
+        #{marketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="clicks != null" >
+        #{clicks,jdbcType=INTEGER},
+      </if>
+      <if test="orders != null" >
+        #{orders,jdbcType=INTEGER},
+      </if>
+      <if test="typeId != null" >
+        #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="defaultPic != null" >
+        #{defaultPic,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="isIvyspa != null" >
+        #{isIvyspa,jdbcType=TINYINT},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=BIT},
+      </if>
+      <if test="property != null" >
+        #{property,jdbcType=BIT},
+      </if>
+      <if test="isHot != null" >
+        #{isHot,jdbcType=BIT},
+      </if>
+      <if test="sourcePic != null" >
+        #{sourcePic,jdbcType=VARCHAR},
+      </if>
+      <if test="listPic != null" >
+        #{listPic,jdbcType=VARCHAR},
+      </if>
+      <if test="detailsPic != null" >
+        #{detailsPic,jdbcType=VARCHAR},
+      </if>
+      <if test="hotPic != null" >
+        #{hotPic,jdbcType=VARCHAR},
+      </if>
+      <if test="activePriceStatus != null" >
+        #{activePriceStatus,jdbcType=BIT},
+      </if>
+      <if test="activeBuyStatus != null" >
+        #{activeBuyStatus,jdbcType=BIT},
+      </if>
+      <if test="activeStartAt != null" >
+        #{activeStartAt,jdbcType=INTEGER},
+      </if>
+      <if test="activeEndIn != null" >
+        #{activeEndIn,jdbcType=INTEGER},
+      </if>
+      <if test="activePrice != null" >
+        #{activePrice,jdbcType=REAL},
+      </if>
+      <if test="activeBuyNum != null" >
+        #{activeBuyNum,jdbcType=BIT},
+      </if>
+      <if test="projectType != null" >
+        #{projectType,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="top.lucius.model.ImProjectExample" resultType="java.lang.Integer" >
+    select count(*) from im_project
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update im_project
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bookingMethod != null" >
+        booking_method = #{record.bookingMethod,jdbcType=BIT},
+      </if>
+      <if test="record.beauticianId != null" >
+        beautician_id = #{record.beauticianId,jdbcType=INTEGER},
+      </if>
+      <if test="record.serviceTime != null" >
+        service_time = #{record.serviceTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.keyFunction != null" >
+        key_function = #{record.keyFunction,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.marketPrice != null" >
+        market_price = #{record.marketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.clicks != null" >
+        clicks = #{record.clicks,jdbcType=INTEGER},
+      </if>
+      <if test="record.orders != null" >
+        orders = #{record.orders,jdbcType=INTEGER},
+      </if>
+      <if test="record.typeId != null" >
+        type_id = #{record.typeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.sort != null" >
+        sort = #{record.sort,jdbcType=INTEGER},
+      </if>
+      <if test="record.addTime != null" >
+        add_time = #{record.addTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.defaultPic != null" >
+        default_pic = #{record.defaultPic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopId != null" >
+        shop_id = #{record.shopId,jdbcType=INTEGER},
+      </if>
+      <if test="record.isIvyspa != null" >
+        is_ivyspa = #{record.isIvyspa,jdbcType=TINYINT},
+      </if>
+      <if test="record.isDelete != null" >
+        is_delete = #{record.isDelete,jdbcType=BIT},
+      </if>
+      <if test="record.property != null" >
+        property = #{record.property,jdbcType=BIT},
+      </if>
+      <if test="record.isHot != null" >
+        is_hot = #{record.isHot,jdbcType=BIT},
+      </if>
+      <if test="record.sourcePic != null" >
+        source_pic = #{record.sourcePic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.listPic != null" >
+        list_pic = #{record.listPic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.detailsPic != null" >
+        details_pic = #{record.detailsPic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hotPic != null" >
+        hot_pic = #{record.hotPic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activePriceStatus != null" >
+        active_price_status = #{record.activePriceStatus,jdbcType=BIT},
+      </if>
+      <if test="record.activeBuyStatus != null" >
+        active_buy_status = #{record.activeBuyStatus,jdbcType=BIT},
+      </if>
+      <if test="record.activeStartAt != null" >
+        active_start_at = #{record.activeStartAt,jdbcType=INTEGER},
+      </if>
+      <if test="record.activeEndIn != null" >
+        active_end_in = #{record.activeEndIn,jdbcType=INTEGER},
+      </if>
+      <if test="record.activePrice != null" >
+        active_price = #{record.activePrice,jdbcType=REAL},
+      </if>
+      <if test="record.activeBuyNum != null" >
+        active_buy_num = #{record.activeBuyNum,jdbcType=BIT},
+      </if>
+      <if test="record.projectType != null" >
+        project_type = #{record.projectType,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update im_project
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      booking_method = #{record.bookingMethod,jdbcType=BIT},
+      beautician_id = #{record.beauticianId,jdbcType=INTEGER},
+      service_time = #{record.serviceTime,jdbcType=INTEGER},
+      key_function = #{record.keyFunction,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      price = #{record.price,jdbcType=DECIMAL},
+      market_price = #{record.marketPrice,jdbcType=DECIMAL},
+      clicks = #{record.clicks,jdbcType=INTEGER},
+      orders = #{record.orders,jdbcType=INTEGER},
+      type_id = #{record.typeId,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      sort = #{record.sort,jdbcType=INTEGER},
+      add_time = #{record.addTime,jdbcType=INTEGER},
+      default_pic = #{record.defaultPic,jdbcType=VARCHAR},
+      shop_id = #{record.shopId,jdbcType=INTEGER},
+      is_ivyspa = #{record.isIvyspa,jdbcType=TINYINT},
+      is_delete = #{record.isDelete,jdbcType=BIT},
+      property = #{record.property,jdbcType=BIT},
+      is_hot = #{record.isHot,jdbcType=BIT},
+      source_pic = #{record.sourcePic,jdbcType=VARCHAR},
+      list_pic = #{record.listPic,jdbcType=VARCHAR},
+      details_pic = #{record.detailsPic,jdbcType=VARCHAR},
+      hot_pic = #{record.hotPic,jdbcType=VARCHAR},
+      active_price_status = #{record.activePriceStatus,jdbcType=BIT},
+      active_buy_status = #{record.activeBuyStatus,jdbcType=BIT},
+      active_start_at = #{record.activeStartAt,jdbcType=INTEGER},
+      active_end_in = #{record.activeEndIn,jdbcType=INTEGER},
+      active_price = #{record.activePrice,jdbcType=REAL},
+      active_buy_num = #{record.activeBuyNum,jdbcType=BIT},
+      project_type = #{record.projectType,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="top.lucius.model.ImProject" >
+    update im_project
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="bookingMethod != null" >
+        booking_method = #{bookingMethod,jdbcType=BIT},
+      </if>
+      <if test="beauticianId != null" >
+        beautician_id = #{beauticianId,jdbcType=INTEGER},
+      </if>
+      <if test="serviceTime != null" >
+        service_time = #{serviceTime,jdbcType=INTEGER},
+      </if>
+      <if test="keyFunction != null" >
+        key_function = #{keyFunction,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="marketPrice != null" >
+        market_price = #{marketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="clicks != null" >
+        clicks = #{clicks,jdbcType=INTEGER},
+      </if>
+      <if test="orders != null" >
+        orders = #{orders,jdbcType=INTEGER},
+      </if>
+      <if test="typeId != null" >
+        type_id = #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="defaultPic != null" >
+        default_pic = #{defaultPic,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="isIvyspa != null" >
+        is_ivyspa = #{isIvyspa,jdbcType=TINYINT},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=BIT},
+      </if>
+      <if test="property != null" >
+        property = #{property,jdbcType=BIT},
+      </if>
+      <if test="isHot != null" >
+        is_hot = #{isHot,jdbcType=BIT},
+      </if>
+      <if test="sourcePic != null" >
+        source_pic = #{sourcePic,jdbcType=VARCHAR},
+      </if>
+      <if test="listPic != null" >
+        list_pic = #{listPic,jdbcType=VARCHAR},
+      </if>
+      <if test="detailsPic != null" >
+        details_pic = #{detailsPic,jdbcType=VARCHAR},
+      </if>
+      <if test="hotPic != null" >
+        hot_pic = #{hotPic,jdbcType=VARCHAR},
+      </if>
+      <if test="activePriceStatus != null" >
+        active_price_status = #{activePriceStatus,jdbcType=BIT},
+      </if>
+      <if test="activeBuyStatus != null" >
+        active_buy_status = #{activeBuyStatus,jdbcType=BIT},
+      </if>
+      <if test="activeStartAt != null" >
+        active_start_at = #{activeStartAt,jdbcType=INTEGER},
+      </if>
+      <if test="activeEndIn != null" >
+        active_end_in = #{activeEndIn,jdbcType=INTEGER},
+      </if>
+      <if test="activePrice != null" >
+        active_price = #{activePrice,jdbcType=REAL},
+      </if>
+      <if test="activeBuyNum != null" >
+        active_buy_num = #{activeBuyNum,jdbcType=BIT},
+      </if>
+      <if test="projectType != null" >
+        project_type = #{projectType,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.lucius.model.ImProject" >
+    update im_project
+    set name = #{name,jdbcType=VARCHAR},
+      booking_method = #{bookingMethod,jdbcType=BIT},
+      beautician_id = #{beauticianId,jdbcType=INTEGER},
+      service_time = #{serviceTime,jdbcType=INTEGER},
+      key_function = #{keyFunction,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      market_price = #{marketPrice,jdbcType=DECIMAL},
+      clicks = #{clicks,jdbcType=INTEGER},
+      orders = #{orders,jdbcType=INTEGER},
+      type_id = #{typeId,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      sort = #{sort,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=INTEGER},
+      default_pic = #{defaultPic,jdbcType=VARCHAR},
+      shop_id = #{shopId,jdbcType=INTEGER},
+      is_ivyspa = #{isIvyspa,jdbcType=TINYINT},
+      is_delete = #{isDelete,jdbcType=BIT},
+      property = #{property,jdbcType=BIT},
+      is_hot = #{isHot,jdbcType=BIT},
+      source_pic = #{sourcePic,jdbcType=VARCHAR},
+      list_pic = #{listPic,jdbcType=VARCHAR},
+      details_pic = #{detailsPic,jdbcType=VARCHAR},
+      hot_pic = #{hotPic,jdbcType=VARCHAR},
+      active_price_status = #{activePriceStatus,jdbcType=BIT},
+      active_buy_status = #{activeBuyStatus,jdbcType=BIT},
+      active_start_at = #{activeStartAt,jdbcType=INTEGER},
+      active_end_in = #{activeEndIn,jdbcType=INTEGER},
+      active_price = #{activePrice,jdbcType=REAL},
+      active_buy_num = #{activeBuyNum,jdbcType=BIT},
+      project_type = #{projectType,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

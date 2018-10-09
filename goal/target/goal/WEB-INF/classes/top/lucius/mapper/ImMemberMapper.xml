@@ -1,0 +1,716 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.lucius.mapper.ImMemberMapper" >
+  <resultMap id="BaseResultMap" type="top.lucius.model.ImMember" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="salt" property="salt" jdbcType="CHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="reg_time" property="regTime" jdbcType="INTEGER" />
+    <result column="reg_ip" property="regIp" jdbcType="VARCHAR" />
+    <result column="last_time" property="lastTime" jdbcType="INTEGER" />
+    <result column="last_ip" property="lastIp" jdbcType="VARCHAR" />
+    <result column="logins" property="logins" jdbcType="INTEGER" />
+    <result column="member_type" property="memberType" jdbcType="BIT" />
+    <result column="rank_id" property="rankId" jdbcType="INTEGER" />
+    <result column="avatar" property="avatar" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="VARCHAR" />
+    <result column="udid" property="udid" jdbcType="VARCHAR" />
+    <result column="sign" property="sign" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="BIT" />
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    <result column="openid" property="openid" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="orders" property="orders" jdbcType="INTEGER" />
+    <result column="origin_poassword" property="originPoassword" jdbcType="VARCHAR" />
+    <result column="invite_code" property="inviteCode" jdbcType="VARCHAR" />
+    <result column="origin_password" property="originPassword" jdbcType="VARCHAR" />
+    <result column="qq" property="qq" jdbcType="VARCHAR" />
+    <result column="integral" property="integral" jdbcType="INTEGER" />
+    <result column="money" property="money" jdbcType="DECIMAL" />
+    <result column="commission" property="commission" jdbcType="DECIMAL" />
+    <result column="fenyuan" property="fenyuan" jdbcType="VARCHAR" />
+    <result column="kahao" property="kahao" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="district" property="district" jdbcType="VARCHAR" />
+    <result column="def_shop_id" property="defShopId" jdbcType="INTEGER" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="follow" property="follow" jdbcType="VARCHAR" />
+    <result column="grade" property="grade" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, name, password, salt, mobile, reg_time, reg_ip, last_time, last_ip, logins, member_type, 
+    rank_id, avatar, birthday, udid, sign, status, nick_name, openid, sex, orders, origin_poassword, 
+    invite_code, origin_password, qq, integral, money, commission, fenyuan, kahao, province, 
+    city, district, def_shop_id, source, follow, grade
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="top.lucius.model.ImMemberExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from im_member
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from im_member
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from im_member
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="top.lucius.model.ImMemberExample" >
+    delete from im_member
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="top.lucius.model.ImMember" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into im_member (name, password, salt, 
+      mobile, reg_time, reg_ip, 
+      last_time, last_ip, logins, 
+      member_type, rank_id, avatar, 
+      birthday, udid, sign, 
+      status, nick_name, openid, 
+      sex, orders, origin_poassword, 
+      invite_code, origin_password, qq, 
+      integral, money, commission, 
+      fenyuan, kahao, province, 
+      city, district, def_shop_id, 
+      source, follow, grade
+      )
+    values (#{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{salt,jdbcType=CHAR}, 
+      #{mobile,jdbcType=VARCHAR}, #{regTime,jdbcType=INTEGER}, #{regIp,jdbcType=VARCHAR}, 
+      #{lastTime,jdbcType=INTEGER}, #{lastIp,jdbcType=VARCHAR}, #{logins,jdbcType=INTEGER}, 
+      #{memberType,jdbcType=BIT}, #{rankId,jdbcType=INTEGER}, #{avatar,jdbcType=VARCHAR}, 
+      #{birthday,jdbcType=VARCHAR}, #{udid,jdbcType=VARCHAR}, #{sign,jdbcType=VARCHAR}, 
+      #{status,jdbcType=BIT}, #{nickName,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{orders,jdbcType=INTEGER}, #{originPoassword,jdbcType=VARCHAR}, 
+      #{inviteCode,jdbcType=VARCHAR}, #{originPassword,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, 
+      #{integral,jdbcType=INTEGER}, #{money,jdbcType=DECIMAL}, #{commission,jdbcType=DECIMAL}, 
+      #{fenyuan,jdbcType=VARCHAR}, #{kahao,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, 
+      #{city,jdbcType=VARCHAR}, #{district,jdbcType=VARCHAR}, #{defShopId,jdbcType=INTEGER}, 
+      #{source,jdbcType=VARCHAR}, #{follow,jdbcType=VARCHAR}, #{grade,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="top.lucius.model.ImMember" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into im_member
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="salt != null" >
+        salt,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="regTime != null" >
+        reg_time,
+      </if>
+      <if test="regIp != null" >
+        reg_ip,
+      </if>
+      <if test="lastTime != null" >
+        last_time,
+      </if>
+      <if test="lastIp != null" >
+        last_ip,
+      </if>
+      <if test="logins != null" >
+        logins,
+      </if>
+      <if test="memberType != null" >
+        member_type,
+      </if>
+      <if test="rankId != null" >
+        rank_id,
+      </if>
+      <if test="avatar != null" >
+        avatar,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="udid != null" >
+        udid,
+      </if>
+      <if test="sign != null" >
+        sign,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="nickName != null" >
+        nick_name,
+      </if>
+      <if test="openid != null" >
+        openid,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="orders != null" >
+        orders,
+      </if>
+      <if test="originPoassword != null" >
+        origin_poassword,
+      </if>
+      <if test="inviteCode != null" >
+        invite_code,
+      </if>
+      <if test="originPassword != null" >
+        origin_password,
+      </if>
+      <if test="qq != null" >
+        qq,
+      </if>
+      <if test="integral != null" >
+        integral,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="commission != null" >
+        commission,
+      </if>
+      <if test="fenyuan != null" >
+        fenyuan,
+      </if>
+      <if test="kahao != null" >
+        kahao,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="district != null" >
+        district,
+      </if>
+      <if test="defShopId != null" >
+        def_shop_id,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="follow != null" >
+        follow,
+      </if>
+      <if test="grade != null" >
+        grade,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        #{salt,jdbcType=CHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null" >
+        #{regTime,jdbcType=INTEGER},
+      </if>
+      <if test="regIp != null" >
+        #{regIp,jdbcType=VARCHAR},
+      </if>
+      <if test="lastTime != null" >
+        #{lastTime,jdbcType=INTEGER},
+      </if>
+      <if test="lastIp != null" >
+        #{lastIp,jdbcType=VARCHAR},
+      </if>
+      <if test="logins != null" >
+        #{logins,jdbcType=INTEGER},
+      </if>
+      <if test="memberType != null" >
+        #{memberType,jdbcType=BIT},
+      </if>
+      <if test="rankId != null" >
+        #{rankId,jdbcType=INTEGER},
+      </if>
+      <if test="avatar != null" >
+        #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="udid != null" >
+        #{udid,jdbcType=VARCHAR},
+      </if>
+      <if test="sign != null" >
+        #{sign,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null" >
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="orders != null" >
+        #{orders,jdbcType=INTEGER},
+      </if>
+      <if test="originPoassword != null" >
+        #{originPoassword,jdbcType=VARCHAR},
+      </if>
+      <if test="inviteCode != null" >
+        #{inviteCode,jdbcType=VARCHAR},
+      </if>
+      <if test="originPassword != null" >
+        #{originPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null" >
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="integral != null" >
+        #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="commission != null" >
+        #{commission,jdbcType=DECIMAL},
+      </if>
+      <if test="fenyuan != null" >
+        #{fenyuan,jdbcType=VARCHAR},
+      </if>
+      <if test="kahao != null" >
+        #{kahao,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null" >
+        #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="defShopId != null" >
+        #{defShopId,jdbcType=INTEGER},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="follow != null" >
+        #{follow,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null" >
+        #{grade,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="top.lucius.model.ImMemberExample" resultType="java.lang.Integer" >
+    select count(*) from im_member
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update im_member
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null" >
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.salt != null" >
+        salt = #{record.salt,jdbcType=CHAR},
+      </if>
+      <if test="record.mobile != null" >
+        mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regTime != null" >
+        reg_time = #{record.regTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.regIp != null" >
+        reg_ip = #{record.regIp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastTime != null" >
+        last_time = #{record.lastTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.lastIp != null" >
+        last_ip = #{record.lastIp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logins != null" >
+        logins = #{record.logins,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberType != null" >
+        member_type = #{record.memberType,jdbcType=BIT},
+      </if>
+      <if test="record.rankId != null" >
+        rank_id = #{record.rankId,jdbcType=INTEGER},
+      </if>
+      <if test="record.avatar != null" >
+        avatar = #{record.avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="record.birthday != null" >
+        birthday = #{record.birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="record.udid != null" >
+        udid = #{record.udid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sign != null" >
+        sign = #{record.sign,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=BIT},
+      </if>
+      <if test="record.nickName != null" >
+        nick_name = #{record.nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.openid != null" >
+        openid = #{record.openid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null" >
+        sex = #{record.sex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orders != null" >
+        orders = #{record.orders,jdbcType=INTEGER},
+      </if>
+      <if test="record.originPoassword != null" >
+        origin_poassword = #{record.originPoassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.inviteCode != null" >
+        invite_code = #{record.inviteCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.originPassword != null" >
+        origin_password = #{record.originPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qq != null" >
+        qq = #{record.qq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.integral != null" >
+        integral = #{record.integral,jdbcType=INTEGER},
+      </if>
+      <if test="record.money != null" >
+        money = #{record.money,jdbcType=DECIMAL},
+      </if>
+      <if test="record.commission != null" >
+        commission = #{record.commission,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fenyuan != null" >
+        fenyuan = #{record.fenyuan,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kahao != null" >
+        kahao = #{record.kahao,jdbcType=VARCHAR},
+      </if>
+      <if test="record.province != null" >
+        province = #{record.province,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null" >
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.district != null" >
+        district = #{record.district,jdbcType=VARCHAR},
+      </if>
+      <if test="record.defShopId != null" >
+        def_shop_id = #{record.defShopId,jdbcType=INTEGER},
+      </if>
+      <if test="record.source != null" >
+        source = #{record.source,jdbcType=VARCHAR},
+      </if>
+      <if test="record.follow != null" >
+        follow = #{record.follow,jdbcType=VARCHAR},
+      </if>
+      <if test="record.grade != null" >
+        grade = #{record.grade,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update im_member
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      salt = #{record.salt,jdbcType=CHAR},
+      mobile = #{record.mobile,jdbcType=VARCHAR},
+      reg_time = #{record.regTime,jdbcType=INTEGER},
+      reg_ip = #{record.regIp,jdbcType=VARCHAR},
+      last_time = #{record.lastTime,jdbcType=INTEGER},
+      last_ip = #{record.lastIp,jdbcType=VARCHAR},
+      logins = #{record.logins,jdbcType=INTEGER},
+      member_type = #{record.memberType,jdbcType=BIT},
+      rank_id = #{record.rankId,jdbcType=INTEGER},
+      avatar = #{record.avatar,jdbcType=VARCHAR},
+      birthday = #{record.birthday,jdbcType=VARCHAR},
+      udid = #{record.udid,jdbcType=VARCHAR},
+      sign = #{record.sign,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=BIT},
+      nick_name = #{record.nickName,jdbcType=VARCHAR},
+      openid = #{record.openid,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=VARCHAR},
+      orders = #{record.orders,jdbcType=INTEGER},
+      origin_poassword = #{record.originPoassword,jdbcType=VARCHAR},
+      invite_code = #{record.inviteCode,jdbcType=VARCHAR},
+      origin_password = #{record.originPassword,jdbcType=VARCHAR},
+      qq = #{record.qq,jdbcType=VARCHAR},
+      integral = #{record.integral,jdbcType=INTEGER},
+      money = #{record.money,jdbcType=DECIMAL},
+      commission = #{record.commission,jdbcType=DECIMAL},
+      fenyuan = #{record.fenyuan,jdbcType=VARCHAR},
+      kahao = #{record.kahao,jdbcType=VARCHAR},
+      province = #{record.province,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      district = #{record.district,jdbcType=VARCHAR},
+      def_shop_id = #{record.defShopId,jdbcType=INTEGER},
+      source = #{record.source,jdbcType=VARCHAR},
+      follow = #{record.follow,jdbcType=VARCHAR},
+      grade = #{record.grade,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="top.lucius.model.ImMember" >
+    update im_member
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        salt = #{salt,jdbcType=CHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null" >
+        reg_time = #{regTime,jdbcType=INTEGER},
+      </if>
+      <if test="regIp != null" >
+        reg_ip = #{regIp,jdbcType=VARCHAR},
+      </if>
+      <if test="lastTime != null" >
+        last_time = #{lastTime,jdbcType=INTEGER},
+      </if>
+      <if test="lastIp != null" >
+        last_ip = #{lastIp,jdbcType=VARCHAR},
+      </if>
+      <if test="logins != null" >
+        logins = #{logins,jdbcType=INTEGER},
+      </if>
+      <if test="memberType != null" >
+        member_type = #{memberType,jdbcType=BIT},
+      </if>
+      <if test="rankId != null" >
+        rank_id = #{rankId,jdbcType=INTEGER},
+      </if>
+      <if test="avatar != null" >
+        avatar = #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="udid != null" >
+        udid = #{udid,jdbcType=VARCHAR},
+      </if>
+      <if test="sign != null" >
+        sign = #{sign,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="nickName != null" >
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null" >
+        openid = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="orders != null" >
+        orders = #{orders,jdbcType=INTEGER},
+      </if>
+      <if test="originPoassword != null" >
+        origin_poassword = #{originPoassword,jdbcType=VARCHAR},
+      </if>
+      <if test="inviteCode != null" >
+        invite_code = #{inviteCode,jdbcType=VARCHAR},
+      </if>
+      <if test="originPassword != null" >
+        origin_password = #{originPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null" >
+        qq = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="integral != null" >
+        integral = #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="commission != null" >
+        commission = #{commission,jdbcType=DECIMAL},
+      </if>
+      <if test="fenyuan != null" >
+        fenyuan = #{fenyuan,jdbcType=VARCHAR},
+      </if>
+      <if test="kahao != null" >
+        kahao = #{kahao,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null" >
+        district = #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="defShopId != null" >
+        def_shop_id = #{defShopId,jdbcType=INTEGER},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="follow != null" >
+        follow = #{follow,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null" >
+        grade = #{grade,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.lucius.model.ImMember" >
+    update im_member
+    set name = #{name,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      salt = #{salt,jdbcType=CHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      reg_time = #{regTime,jdbcType=INTEGER},
+      reg_ip = #{regIp,jdbcType=VARCHAR},
+      last_time = #{lastTime,jdbcType=INTEGER},
+      last_ip = #{lastIp,jdbcType=VARCHAR},
+      logins = #{logins,jdbcType=INTEGER},
+      member_type = #{memberType,jdbcType=BIT},
+      rank_id = #{rankId,jdbcType=INTEGER},
+      avatar = #{avatar,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=VARCHAR},
+      udid = #{udid,jdbcType=VARCHAR},
+      sign = #{sign,jdbcType=VARCHAR},
+      status = #{status,jdbcType=BIT},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      openid = #{openid,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      orders = #{orders,jdbcType=INTEGER},
+      origin_poassword = #{originPoassword,jdbcType=VARCHAR},
+      invite_code = #{inviteCode,jdbcType=VARCHAR},
+      origin_password = #{originPassword,jdbcType=VARCHAR},
+      qq = #{qq,jdbcType=VARCHAR},
+      integral = #{integral,jdbcType=INTEGER},
+      money = #{money,jdbcType=DECIMAL},
+      commission = #{commission,jdbcType=DECIMAL},
+      fenyuan = #{fenyuan,jdbcType=VARCHAR},
+      kahao = #{kahao,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      district = #{district,jdbcType=VARCHAR},
+      def_shop_id = #{defShopId,jdbcType=INTEGER},
+      source = #{source,jdbcType=VARCHAR},
+      follow = #{follow,jdbcType=VARCHAR},
+      grade = #{grade,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

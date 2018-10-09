@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- 开启注解 -->
+    <mvc:annotation-driven/>
+
+    <!--指明 controller 所在包，并扫描其中的注解-->
+    <context:component-scan base-package="top.lucius.controller,top.lucius.*"/>
+
+    <!-- 加载配置文件 -->
+    <context:property-placeholder location="classpath:configs/redis.properties" />
+    <context:property-placeholder location="classpath:configs/configs.properties"/>
+
+    <!--Mapper扫描器-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--给出要sql扫描的dao接口-->
+        <property name="basePackage" value="top.lucius.mapper" />
+        <!-- 注入SqlSessionFactory-->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+    </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="mapperLocations">
+            <array>
+                <value>classpath*:top/lucius/mapper/**/*.xml</value>
+            </array>
+        </property>
+        <!--分页pageHelper配置-->
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageHelper">
+                    <!-- 这里的几个配置主要演示如何使用，如果不理解，一定要去掉下面的配置 -->
+                    <property name="properties">
+                        <value>
+                            dialect=mysql
+                            reasonable=true
+                            supportMethodsArguments=true
+                            params=count=countSql
+                            autoRuntimeDialect=true
+                        </value>
+                    </property>
+                </bean>
+
+            </array>
+        </property>
+    </bean>
+
+    <!-- dataSource 数据库连接池-->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://192.168.1.112:3306/imeitest?useUnicode=true&amp;characterEncoding=utf-8"/>
+        <!--<property name="url" value="${main.db.url}"/>-->
+        <property name="username" value="root"/>
+        <property name="password" value="111111"/>
+    </bean>
+
+    <!--ViewResolver 视图解析器-->
+    <!--用于支持Servlet、JSP视图解析-->
+    <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!-- 配置jdbcTemplate -->
+    <!--<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">-->
+        <!--<property name="dataSource" ref="dataSource"/>-->
+    <!--</bean>-->
+
+    <mvc:resources location="/statics/js/" mapping="/js/**"/>
+    <mvc:resources location="/statics/images/" mapping="/images/**"/>
+    <mvc:resources location="/statics/css/" mapping="/css/**"/>
+    <mvc:resources location="/WEB-INF/jsp/" mapping="/jsp/**"/>
+
+    <!--Spring 其它配置, 这里用引入的形式是为了方便用JUNIT测试时，引用一个配置就行了 -->
+    <import resource="classpath:configs/spring/applicationContext-redis.xml"/>
+
+</beans>

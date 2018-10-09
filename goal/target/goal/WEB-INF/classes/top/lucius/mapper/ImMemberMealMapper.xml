@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.lucius.mapper.ImMemberMealMapper" >
+  <resultMap id="BaseResultMap" type="top.lucius.model.ImMemberMeal" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="meal_id" property="mealId" jdbcType="INTEGER" />
+    <result column="member_id" property="memberId" jdbcType="INTEGER" />
+    <result column="add_time" property="addTime" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="REAL" />
+    <result column="total_price" property="totalPrice" jdbcType="REAL" />
+    <result column="pay_price" property="payPrice" jdbcType="REAL" />
+    <result column="num" property="num" jdbcType="INTEGER" />
+    <result column="use_num" property="useNum" jdbcType="INTEGER" />
+    <result column="order_sn" property="orderSn" jdbcType="VARCHAR" />
+    <result column="trade_no" property="tradeNo" jdbcType="VARCHAR" />
+    <result column="pay_method" property="payMethod" jdbcType="VARCHAR" />
+    <result column="paid_time" property="paidTime" jdbcType="INTEGER" />
+    <result column="end_time" property="endTime" jdbcType="INTEGER" />
+    <result column="explain" property="explain" jdbcType="VARCHAR" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="groups_id" property="groupsId" jdbcType="INTEGER" />
+    <result column="groups_member_id" property="groupsMemberId" jdbcType="INTEGER" />
+    <result column="follow" property="follow" jdbcType="VARCHAR" />
+    <result column="activity_id" property="activityId" jdbcType="INTEGER" />
+    <result column="meal_type" property="mealType" jdbcType="INTEGER" />
+    <result column="shipping_type" property="shippingType" jdbcType="INTEGER" />
+    <result column="shipping_address" property="shippingAddress" jdbcType="VARCHAR" />
+    <result column="shipping_shop_id" property="shippingShopId" jdbcType="INTEGER" />
+    <result column="refund_reason" property="refundReason" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, meal_id, member_id, add_time, status, price, total_price, pay_price, num, use_num, 
+    order_sn, trade_no, pay_method, paid_time, end_time, explain, source, groups_id, 
+    groups_member_id, follow, activity_id, meal_type, shipping_type, shipping_address, 
+    shipping_shop_id, refund_reason
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="top.lucius.model.ImMemberMealExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from im_member_meal
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from im_member_meal
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from im_member_meal
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="top.lucius.model.ImMemberMealExample" >
+    delete from im_member_meal
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="top.lucius.model.ImMemberMeal" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into im_member_meal (meal_id, member_id, add_time, 
+      status, price, total_price, 
+      pay_price, num, use_num, 
+      order_sn, trade_no, pay_method, 
+      paid_time, end_time, explain, 
+      source, groups_id, groups_member_id, 
+      follow, activity_id, meal_type, 
+      shipping_type, shipping_address, shipping_shop_id, 
+      refund_reason)
+    values (#{mealId,jdbcType=INTEGER}, #{memberId,jdbcType=INTEGER}, #{addTime,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{price,jdbcType=REAL}, #{totalPrice,jdbcType=REAL}, 
+      #{payPrice,jdbcType=REAL}, #{num,jdbcType=INTEGER}, #{useNum,jdbcType=INTEGER}, 
+      #{orderSn,jdbcType=VARCHAR}, #{tradeNo,jdbcType=VARCHAR}, #{payMethod,jdbcType=VARCHAR}, 
+      #{paidTime,jdbcType=INTEGER}, #{endTime,jdbcType=INTEGER}, #{explain,jdbcType=VARCHAR}, 
+      #{source,jdbcType=VARCHAR}, #{groupsId,jdbcType=INTEGER}, #{groupsMemberId,jdbcType=INTEGER}, 
+      #{follow,jdbcType=VARCHAR}, #{activityId,jdbcType=INTEGER}, #{mealType,jdbcType=INTEGER}, 
+      #{shippingType,jdbcType=INTEGER}, #{shippingAddress,jdbcType=VARCHAR}, #{shippingShopId,jdbcType=INTEGER}, 
+      #{refundReason,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="top.lucius.model.ImMemberMeal" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into im_member_meal
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mealId != null" >
+        meal_id,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="totalPrice != null" >
+        total_price,
+      </if>
+      <if test="payPrice != null" >
+        pay_price,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+      <if test="useNum != null" >
+        use_num,
+      </if>
+      <if test="orderSn != null" >
+        order_sn,
+      </if>
+      <if test="tradeNo != null" >
+        trade_no,
+      </if>
+      <if test="payMethod != null" >
+        pay_method,
+      </if>
+      <if test="paidTime != null" >
+        paid_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="explain != null" >
+        explain,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="groupsId != null" >
+        groups_id,
+      </if>
+      <if test="groupsMemberId != null" >
+        groups_member_id,
+      </if>
+      <if test="follow != null" >
+        follow,
+      </if>
+      <if test="activityId != null" >
+        activity_id,
+      </if>
+      <if test="mealType != null" >
+        meal_type,
+      </if>
+      <if test="shippingType != null" >
+        shipping_type,
+      </if>
+      <if test="shippingAddress != null" >
+        shipping_address,
+      </if>
+      <if test="shippingShopId != null" >
+        shipping_shop_id,
+      </if>
+      <if test="refundReason != null" >
+        refund_reason,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mealId != null" >
+        #{mealId,jdbcType=INTEGER},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=REAL},
+      </if>
+      <if test="totalPrice != null" >
+        #{totalPrice,jdbcType=REAL},
+      </if>
+      <if test="payPrice != null" >
+        #{payPrice,jdbcType=REAL},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="useNum != null" >
+        #{useNum,jdbcType=INTEGER},
+      </if>
+      <if test="orderSn != null" >
+        #{orderSn,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeNo != null" >
+        #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payMethod != null" >
+        #{payMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="paidTime != null" >
+        #{paidTime,jdbcType=INTEGER},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=INTEGER},
+      </if>
+      <if test="explain != null" >
+        #{explain,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="groupsId != null" >
+        #{groupsId,jdbcType=INTEGER},
+      </if>
+      <if test="groupsMemberId != null" >
+        #{groupsMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="follow != null" >
+        #{follow,jdbcType=VARCHAR},
+      </if>
+      <if test="activityId != null" >
+        #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="mealType != null" >
+        #{mealType,jdbcType=INTEGER},
+      </if>
+      <if test="shippingType != null" >
+        #{shippingType,jdbcType=INTEGER},
+      </if>
+      <if test="shippingAddress != null" >
+        #{shippingAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingShopId != null" >
+        #{shippingShopId,jdbcType=INTEGER},
+      </if>
+      <if test="refundReason != null" >
+        #{refundReason,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="top.lucius.model.ImMemberMealExample" resultType="java.lang.Integer" >
+    select count(*) from im_member_meal
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update im_member_meal
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.mealId != null" >
+        meal_id = #{record.mealId,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberId != null" >
+        member_id = #{record.memberId,jdbcType=INTEGER},
+      </if>
+      <if test="record.addTime != null" >
+        add_time = #{record.addTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=REAL},
+      </if>
+      <if test="record.totalPrice != null" >
+        total_price = #{record.totalPrice,jdbcType=REAL},
+      </if>
+      <if test="record.payPrice != null" >
+        pay_price = #{record.payPrice,jdbcType=REAL},
+      </if>
+      <if test="record.num != null" >
+        num = #{record.num,jdbcType=INTEGER},
+      </if>
+      <if test="record.useNum != null" >
+        use_num = #{record.useNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderSn != null" >
+        order_sn = #{record.orderSn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tradeNo != null" >
+        trade_no = #{record.tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payMethod != null" >
+        pay_method = #{record.payMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paidTime != null" >
+        paid_time = #{record.paidTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.endTime != null" >
+        end_time = #{record.endTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.explain != null" >
+        explain = #{record.explain,jdbcType=VARCHAR},
+      </if>
+      <if test="record.source != null" >
+        source = #{record.source,jdbcType=VARCHAR},
+      </if>
+      <if test="record.groupsId != null" >
+        groups_id = #{record.groupsId,jdbcType=INTEGER},
+      </if>
+      <if test="record.groupsMemberId != null" >
+        groups_member_id = #{record.groupsMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="record.follow != null" >
+        follow = #{record.follow,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activityId != null" >
+        activity_id = #{record.activityId,jdbcType=INTEGER},
+      </if>
+      <if test="record.mealType != null" >
+        meal_type = #{record.mealType,jdbcType=INTEGER},
+      </if>
+      <if test="record.shippingType != null" >
+        shipping_type = #{record.shippingType,jdbcType=INTEGER},
+      </if>
+      <if test="record.shippingAddress != null" >
+        shipping_address = #{record.shippingAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shippingShopId != null" >
+        shipping_shop_id = #{record.shippingShopId,jdbcType=INTEGER},
+      </if>
+      <if test="record.refundReason != null" >
+        refund_reason = #{record.refundReason,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update im_member_meal
+    set id = #{record.id,jdbcType=INTEGER},
+      meal_id = #{record.mealId,jdbcType=INTEGER},
+      member_id = #{record.memberId,jdbcType=INTEGER},
+      add_time = #{record.addTime,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      price = #{record.price,jdbcType=REAL},
+      total_price = #{record.totalPrice,jdbcType=REAL},
+      pay_price = #{record.payPrice,jdbcType=REAL},
+      num = #{record.num,jdbcType=INTEGER},
+      use_num = #{record.useNum,jdbcType=INTEGER},
+      order_sn = #{record.orderSn,jdbcType=VARCHAR},
+      trade_no = #{record.tradeNo,jdbcType=VARCHAR},
+      pay_method = #{record.payMethod,jdbcType=VARCHAR},
+      paid_time = #{record.paidTime,jdbcType=INTEGER},
+      end_time = #{record.endTime,jdbcType=INTEGER},
+      explain = #{record.explain,jdbcType=VARCHAR},
+      source = #{record.source,jdbcType=VARCHAR},
+      groups_id = #{record.groupsId,jdbcType=INTEGER},
+      groups_member_id = #{record.groupsMemberId,jdbcType=INTEGER},
+      follow = #{record.follow,jdbcType=VARCHAR},
+      activity_id = #{record.activityId,jdbcType=INTEGER},
+      meal_type = #{record.mealType,jdbcType=INTEGER},
+      shipping_type = #{record.shippingType,jdbcType=INTEGER},
+      shipping_address = #{record.shippingAddress,jdbcType=VARCHAR},
+      shipping_shop_id = #{record.shippingShopId,jdbcType=INTEGER},
+      refund_reason = #{record.refundReason,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="top.lucius.model.ImMemberMeal" >
+    update im_member_meal
+    <set >
+      <if test="mealId != null" >
+        meal_id = #{mealId,jdbcType=INTEGER},
+      </if>
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=REAL},
+      </if>
+      <if test="totalPrice != null" >
+        total_price = #{totalPrice,jdbcType=REAL},
+      </if>
+      <if test="payPrice != null" >
+        pay_price = #{payPrice,jdbcType=REAL},
+      </if>
+      <if test="num != null" >
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="useNum != null" >
+        use_num = #{useNum,jdbcType=INTEGER},
+      </if>
+      <if test="orderSn != null" >
+        order_sn = #{orderSn,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeNo != null" >
+        trade_no = #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payMethod != null" >
+        pay_method = #{payMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="paidTime != null" >
+        paid_time = #{paidTime,jdbcType=INTEGER},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=INTEGER},
+      </if>
+      <if test="explain != null" >
+        explain = #{explain,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="groupsId != null" >
+        groups_id = #{groupsId,jdbcType=INTEGER},
+      </if>
+      <if test="groupsMemberId != null" >
+        groups_member_id = #{groupsMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="follow != null" >
+        follow = #{follow,jdbcType=VARCHAR},
+      </if>
+      <if test="activityId != null" >
+        activity_id = #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="mealType != null" >
+        meal_type = #{mealType,jdbcType=INTEGER},
+      </if>
+      <if test="shippingType != null" >
+        shipping_type = #{shippingType,jdbcType=INTEGER},
+      </if>
+      <if test="shippingAddress != null" >
+        shipping_address = #{shippingAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingShopId != null" >
+        shipping_shop_id = #{shippingShopId,jdbcType=INTEGER},
+      </if>
+      <if test="refundReason != null" >
+        refund_reason = #{refundReason,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.lucius.model.ImMemberMeal" >
+    update im_member_meal
+    set meal_id = #{mealId,jdbcType=INTEGER},
+      member_id = #{memberId,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      price = #{price,jdbcType=REAL},
+      total_price = #{totalPrice,jdbcType=REAL},
+      pay_price = #{payPrice,jdbcType=REAL},
+      num = #{num,jdbcType=INTEGER},
+      use_num = #{useNum,jdbcType=INTEGER},
+      order_sn = #{orderSn,jdbcType=VARCHAR},
+      trade_no = #{tradeNo,jdbcType=VARCHAR},
+      pay_method = #{payMethod,jdbcType=VARCHAR},
+      paid_time = #{paidTime,jdbcType=INTEGER},
+      end_time = #{endTime,jdbcType=INTEGER},
+      explain = #{explain,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
+      groups_id = #{groupsId,jdbcType=INTEGER},
+      groups_member_id = #{groupsMemberId,jdbcType=INTEGER},
+      follow = #{follow,jdbcType=VARCHAR},
+      activity_id = #{activityId,jdbcType=INTEGER},
+      meal_type = #{mealType,jdbcType=INTEGER},
+      shipping_type = #{shippingType,jdbcType=INTEGER},
+      shipping_address = #{shippingAddress,jdbcType=VARCHAR},
+      shipping_shop_id = #{shippingShopId,jdbcType=INTEGER},
+      refund_reason = #{refundReason,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

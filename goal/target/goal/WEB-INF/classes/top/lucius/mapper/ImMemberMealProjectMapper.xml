@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.lucius.mapper.ImMemberMealProjectMapper" >
+  <resultMap id="BaseResultMap" type="top.lucius.model.ImMemberMealProject" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="meal_id" property="mealId" jdbcType="INTEGER" />
+    <result column="project_id" property="projectId" jdbcType="INTEGER" />
+    <result column="project_num" property="projectNum" jdbcType="INTEGER" />
+    <result column="use_num" property="useNum" jdbcType="INTEGER" />
+    <result column="project_price" property="projectPrice" jdbcType="REAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, meal_id, project_id, project_num, use_num, project_price
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="top.lucius.model.ImMemberMealProjectExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from im_member_meal_project
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from im_member_meal_project
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from im_member_meal_project
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="top.lucius.model.ImMemberMealProjectExample" >
+    delete from im_member_meal_project
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="top.lucius.model.ImMemberMealProject" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into im_member_meal_project (meal_id, project_id, project_num, 
+      use_num, project_price)
+    values (#{mealId,jdbcType=INTEGER}, #{projectId,jdbcType=INTEGER}, #{projectNum,jdbcType=INTEGER}, 
+      #{useNum,jdbcType=INTEGER}, #{projectPrice,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" parameterType="top.lucius.model.ImMemberMealProject" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into im_member_meal_project
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mealId != null" >
+        meal_id,
+      </if>
+      <if test="projectId != null" >
+        project_id,
+      </if>
+      <if test="projectNum != null" >
+        project_num,
+      </if>
+      <if test="useNum != null" >
+        use_num,
+      </if>
+      <if test="projectPrice != null" >
+        project_price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mealId != null" >
+        #{mealId,jdbcType=INTEGER},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=INTEGER},
+      </if>
+      <if test="projectNum != null" >
+        #{projectNum,jdbcType=INTEGER},
+      </if>
+      <if test="useNum != null" >
+        #{useNum,jdbcType=INTEGER},
+      </if>
+      <if test="projectPrice != null" >
+        #{projectPrice,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="top.lucius.model.ImMemberMealProjectExample" resultType="java.lang.Integer" >
+    select count(*) from im_member_meal_project
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update im_member_meal_project
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.mealId != null" >
+        meal_id = #{record.mealId,jdbcType=INTEGER},
+      </if>
+      <if test="record.projectId != null" >
+        project_id = #{record.projectId,jdbcType=INTEGER},
+      </if>
+      <if test="record.projectNum != null" >
+        project_num = #{record.projectNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.useNum != null" >
+        use_num = #{record.useNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.projectPrice != null" >
+        project_price = #{record.projectPrice,jdbcType=REAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update im_member_meal_project
+    set id = #{record.id,jdbcType=INTEGER},
+      meal_id = #{record.mealId,jdbcType=INTEGER},
+      project_id = #{record.projectId,jdbcType=INTEGER},
+      project_num = #{record.projectNum,jdbcType=INTEGER},
+      use_num = #{record.useNum,jdbcType=INTEGER},
+      project_price = #{record.projectPrice,jdbcType=REAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="top.lucius.model.ImMemberMealProject" >
+    update im_member_meal_project
+    <set >
+      <if test="mealId != null" >
+        meal_id = #{mealId,jdbcType=INTEGER},
+      </if>
+      <if test="projectId != null" >
+        project_id = #{projectId,jdbcType=INTEGER},
+      </if>
+      <if test="projectNum != null" >
+        project_num = #{projectNum,jdbcType=INTEGER},
+      </if>
+      <if test="useNum != null" >
+        use_num = #{useNum,jdbcType=INTEGER},
+      </if>
+      <if test="projectPrice != null" >
+        project_price = #{projectPrice,jdbcType=REAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.lucius.model.ImMemberMealProject" >
+    update im_member_meal_project
+    set meal_id = #{mealId,jdbcType=INTEGER},
+      project_id = #{projectId,jdbcType=INTEGER},
+      project_num = #{projectNum,jdbcType=INTEGER},
+      use_num = #{useNum,jdbcType=INTEGER},
+      project_price = #{projectPrice,jdbcType=REAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

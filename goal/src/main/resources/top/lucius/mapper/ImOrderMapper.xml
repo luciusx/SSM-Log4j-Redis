@@ -1,0 +1,1098 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.lucius.mapper.ImOrderMapper" >
+  <resultMap id="BaseResultMap" type="top.lucius.model.ImOrder" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_sn" property="orderSn" jdbcType="VARCHAR" />
+    <result column="member_id" property="memberId" jdbcType="INTEGER" />
+    <result column="beautician_id" property="beauticianId" jdbcType="INTEGER" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="cash_coupon_id" property="cashCouponId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="meal_name" property="mealName" jdbcType="VARCHAR" />
+    <result column="meal_id" property="mealId" jdbcType="INTEGER" />
+    <result column="total_price" property="totalPrice" jdbcType="REAL" />
+    <result column="discount_price" property="discountPrice" jdbcType="REAL" />
+    <result column="coupon_sn" property="couponSn" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="INTEGER" />
+    <result column="city" property="city" jdbcType="INTEGER" />
+    <result column="district" property="district" jdbcType="INTEGER" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="room_number" property="roomNumber" jdbcType="VARCHAR" />
+    <result column="full_address" property="fullAddress" jdbcType="VARCHAR" />
+    <result column="service_time" property="serviceTime" jdbcType="VARCHAR" />
+    <result column="edit_service_time" property="editServiceTime" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="trade_no" property="tradeNo" jdbcType="VARCHAR" />
+    <result column="add_time" property="addTime" jdbcType="INTEGER" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+    <result column="confirm_time" property="confirmTime" jdbcType="INTEGER" />
+    <result column="cancel_time" property="cancelTime" jdbcType="INTEGER" />
+    <result column="notified" property="notified" jdbcType="BIT" />
+    <result column="pay_method" property="payMethod" jdbcType="VARCHAR" />
+    <result column="pay_price" property="payPrice" jdbcType="REAL" />
+    <result column="paid_time" property="paidTime" jdbcType="INTEGER" />
+    <result column="start_time_deleted" property="startTimeDeleted" jdbcType="INTEGER" />
+    <result column="end_time" property="endTime" jdbcType="INTEGER" />
+    <result column="begin_time" property="beginTime" jdbcType="INTEGER" />
+    <result column="begin_longitude" property="beginLongitude" jdbcType="REAL" />
+    <result column="begin_latitude" property="beginLatitude" jdbcType="REAL" />
+    <result column="end_longitude" property="endLongitude" jdbcType="REAL" />
+    <result column="end_latitude" property="endLatitude" jdbcType="REAL" />
+    <result column="service_end_time" property="serviceEndTime" jdbcType="VARCHAR" />
+    <result column="project_ids" property="projectIds" jdbcType="VARCHAR" />
+    <result column="cash_coupon_money" property="cashCouponMoney" jdbcType="REAL" />
+    <result column="member_cash_coupon_id" property="memberCashCouponId" jdbcType="INTEGER" />
+    <result column="memo" property="memo" jdbcType="VARCHAR" />
+    <result column="is_confirm" property="isConfirm" jdbcType="INTEGER" />
+    <result column="used_money" property="usedMoney" jdbcType="REAL" />
+    <result column="used_commission" property="usedCommission" jdbcType="REAL" />
+    <result column="sms_notify_customer_before_1hour" property="smsNotifyCustomerBefore1hour" jdbcType="BIT" />
+    <result column="sms_notify_beautyshop_before_1hour" property="smsNotifyBeautyshopBefore1hour" jdbcType="BIT" />
+    <result column="sms_notify_beautician_before_1hour" property="smsNotifyBeauticianBefore1hour" jdbcType="BIT" />
+    <result column="is_jiesuan" property="isJiesuan" jdbcType="BIT" />
+    <result column="jiesuan_time" property="jiesuanTime" jdbcType="INTEGER" />
+    <result column="withdraw_time" property="withdrawTime" jdbcType="INTEGER" />
+    <result column="activity_id" property="activityId" jdbcType="INTEGER" />
+    <result column="activity_link_tag" property="activityLinkTag" jdbcType="VARCHAR" />
+    <result column="activity_link_url" property="activityLinkUrl" jdbcType="VARCHAR" />
+    <result column="activity_divisive_tag" property="activityDivisiveTag" jdbcType="VARCHAR" />
+    <result column="orderback_send_sms" property="orderbackSendSms" jdbcType="BIT" />
+    <result column="orderback_send_sms_shop" property="orderbackSendSmsShop" jdbcType="TINYINT" />
+    <result column="groups_id" property="groupsId" jdbcType="INTEGER" />
+    <result column="groups_member_id" property="groupsMemberId" jdbcType="INTEGER" />
+    <result column="follow" property="follow" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, order_sn, member_id, beautician_id, shop_id, cash_coupon_id, name, mobile, meal_name, 
+    meal_id, total_price, discount_price, coupon_sn, province, city, district, address, 
+    room_number, full_address, service_time, edit_service_time, status, trade_no, add_time, 
+    ip, confirm_time, cancel_time, notified, pay_method, pay_price, paid_time, start_time_deleted, 
+    end_time, begin_time, begin_longitude, begin_latitude, end_longitude, end_latitude, 
+    service_end_time, project_ids, cash_coupon_money, member_cash_coupon_id, memo, is_confirm, 
+    used_money, used_commission, sms_notify_customer_before_1hour, sms_notify_beautyshop_before_1hour, 
+    sms_notify_beautician_before_1hour, is_jiesuan, jiesuan_time, withdraw_time, activity_id, 
+    activity_link_tag, activity_link_url, activity_divisive_tag, orderback_send_sms, 
+    orderback_send_sms_shop, groups_id, groups_member_id, follow
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="top.lucius.model.ImOrderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from im_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from im_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from im_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="top.lucius.model.ImOrderExample" >
+    delete from im_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="top.lucius.model.ImOrder" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into im_order (order_sn, member_id, beautician_id, 
+      shop_id, cash_coupon_id, name, 
+      mobile, meal_name, meal_id, 
+      total_price, discount_price, coupon_sn, 
+      province, city, district, 
+      address, room_number, full_address, 
+      service_time, edit_service_time, status, 
+      trade_no, add_time, ip, 
+      confirm_time, cancel_time, notified, 
+      pay_method, pay_price, paid_time, 
+      start_time_deleted, end_time, begin_time, 
+      begin_longitude, begin_latitude, end_longitude, 
+      end_latitude, service_end_time, project_ids, 
+      cash_coupon_money, member_cash_coupon_id, memo, 
+      is_confirm, used_money, used_commission, 
+      sms_notify_customer_before_1hour, sms_notify_beautyshop_before_1hour, 
+      sms_notify_beautician_before_1hour, is_jiesuan, jiesuan_time, 
+      withdraw_time, activity_id, activity_link_tag, 
+      activity_link_url, activity_divisive_tag, orderback_send_sms, 
+      orderback_send_sms_shop, groups_id, groups_member_id, 
+      follow)
+    values (#{orderSn,jdbcType=VARCHAR}, #{memberId,jdbcType=INTEGER}, #{beauticianId,jdbcType=INTEGER}, 
+      #{shopId,jdbcType=INTEGER}, #{cashCouponId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{mobile,jdbcType=VARCHAR}, #{mealName,jdbcType=VARCHAR}, #{mealId,jdbcType=INTEGER}, 
+      #{totalPrice,jdbcType=REAL}, #{discountPrice,jdbcType=REAL}, #{couponSn,jdbcType=VARCHAR}, 
+      #{province,jdbcType=INTEGER}, #{city,jdbcType=INTEGER}, #{district,jdbcType=INTEGER}, 
+      #{address,jdbcType=VARCHAR}, #{roomNumber,jdbcType=VARCHAR}, #{fullAddress,jdbcType=VARCHAR}, 
+      #{serviceTime,jdbcType=VARCHAR}, #{editServiceTime,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{tradeNo,jdbcType=VARCHAR}, #{addTime,jdbcType=INTEGER}, #{ip,jdbcType=VARCHAR}, 
+      #{confirmTime,jdbcType=INTEGER}, #{cancelTime,jdbcType=INTEGER}, #{notified,jdbcType=BIT}, 
+      #{payMethod,jdbcType=VARCHAR}, #{payPrice,jdbcType=REAL}, #{paidTime,jdbcType=INTEGER}, 
+      #{startTimeDeleted,jdbcType=INTEGER}, #{endTime,jdbcType=INTEGER}, #{beginTime,jdbcType=INTEGER}, 
+      #{beginLongitude,jdbcType=REAL}, #{beginLatitude,jdbcType=REAL}, #{endLongitude,jdbcType=REAL}, 
+      #{endLatitude,jdbcType=REAL}, #{serviceEndTime,jdbcType=VARCHAR}, #{projectIds,jdbcType=VARCHAR}, 
+      #{cashCouponMoney,jdbcType=REAL}, #{memberCashCouponId,jdbcType=INTEGER}, #{memo,jdbcType=VARCHAR}, 
+      #{isConfirm,jdbcType=INTEGER}, #{usedMoney,jdbcType=REAL}, #{usedCommission,jdbcType=REAL}, 
+      #{smsNotifyCustomerBefore1hour,jdbcType=BIT}, #{smsNotifyBeautyshopBefore1hour,jdbcType=BIT}, 
+      #{smsNotifyBeauticianBefore1hour,jdbcType=BIT}, #{isJiesuan,jdbcType=BIT}, #{jiesuanTime,jdbcType=INTEGER}, 
+      #{withdrawTime,jdbcType=INTEGER}, #{activityId,jdbcType=INTEGER}, #{activityLinkTag,jdbcType=VARCHAR}, 
+      #{activityLinkUrl,jdbcType=VARCHAR}, #{activityDivisiveTag,jdbcType=VARCHAR}, #{orderbackSendSms,jdbcType=BIT}, 
+      #{orderbackSendSmsShop,jdbcType=TINYINT}, #{groupsId,jdbcType=INTEGER}, #{groupsMemberId,jdbcType=INTEGER}, 
+      #{follow,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="top.lucius.model.ImOrder" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into im_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderSn != null" >
+        order_sn,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="beauticianId != null" >
+        beautician_id,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="cashCouponId != null" >
+        cash_coupon_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="mealName != null" >
+        meal_name,
+      </if>
+      <if test="mealId != null" >
+        meal_id,
+      </if>
+      <if test="totalPrice != null" >
+        total_price,
+      </if>
+      <if test="discountPrice != null" >
+        discount_price,
+      </if>
+      <if test="couponSn != null" >
+        coupon_sn,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="district != null" >
+        district,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="roomNumber != null" >
+        room_number,
+      </if>
+      <if test="fullAddress != null" >
+        full_address,
+      </if>
+      <if test="serviceTime != null" >
+        service_time,
+      </if>
+      <if test="editServiceTime != null" >
+        edit_service_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="tradeNo != null" >
+        trade_no,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="ip != null" >
+        ip,
+      </if>
+      <if test="confirmTime != null" >
+        confirm_time,
+      </if>
+      <if test="cancelTime != null" >
+        cancel_time,
+      </if>
+      <if test="notified != null" >
+        notified,
+      </if>
+      <if test="payMethod != null" >
+        pay_method,
+      </if>
+      <if test="payPrice != null" >
+        pay_price,
+      </if>
+      <if test="paidTime != null" >
+        paid_time,
+      </if>
+      <if test="startTimeDeleted != null" >
+        start_time_deleted,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="beginTime != null" >
+        begin_time,
+      </if>
+      <if test="beginLongitude != null" >
+        begin_longitude,
+      </if>
+      <if test="beginLatitude != null" >
+        begin_latitude,
+      </if>
+      <if test="endLongitude != null" >
+        end_longitude,
+      </if>
+      <if test="endLatitude != null" >
+        end_latitude,
+      </if>
+      <if test="serviceEndTime != null" >
+        service_end_time,
+      </if>
+      <if test="projectIds != null" >
+        project_ids,
+      </if>
+      <if test="cashCouponMoney != null" >
+        cash_coupon_money,
+      </if>
+      <if test="memberCashCouponId != null" >
+        member_cash_coupon_id,
+      </if>
+      <if test="memo != null" >
+        memo,
+      </if>
+      <if test="isConfirm != null" >
+        is_confirm,
+      </if>
+      <if test="usedMoney != null" >
+        used_money,
+      </if>
+      <if test="usedCommission != null" >
+        used_commission,
+      </if>
+      <if test="smsNotifyCustomerBefore1hour != null" >
+        sms_notify_customer_before_1hour,
+      </if>
+      <if test="smsNotifyBeautyshopBefore1hour != null" >
+        sms_notify_beautyshop_before_1hour,
+      </if>
+      <if test="smsNotifyBeauticianBefore1hour != null" >
+        sms_notify_beautician_before_1hour,
+      </if>
+      <if test="isJiesuan != null" >
+        is_jiesuan,
+      </if>
+      <if test="jiesuanTime != null" >
+        jiesuan_time,
+      </if>
+      <if test="withdrawTime != null" >
+        withdraw_time,
+      </if>
+      <if test="activityId != null" >
+        activity_id,
+      </if>
+      <if test="activityLinkTag != null" >
+        activity_link_tag,
+      </if>
+      <if test="activityLinkUrl != null" >
+        activity_link_url,
+      </if>
+      <if test="activityDivisiveTag != null" >
+        activity_divisive_tag,
+      </if>
+      <if test="orderbackSendSms != null" >
+        orderback_send_sms,
+      </if>
+      <if test="orderbackSendSmsShop != null" >
+        orderback_send_sms_shop,
+      </if>
+      <if test="groupsId != null" >
+        groups_id,
+      </if>
+      <if test="groupsMemberId != null" >
+        groups_member_id,
+      </if>
+      <if test="follow != null" >
+        follow,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderSn != null" >
+        #{orderSn,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="beauticianId != null" >
+        #{beauticianId,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="cashCouponId != null" >
+        #{cashCouponId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="mealName != null" >
+        #{mealName,jdbcType=VARCHAR},
+      </if>
+      <if test="mealId != null" >
+        #{mealId,jdbcType=INTEGER},
+      </if>
+      <if test="totalPrice != null" >
+        #{totalPrice,jdbcType=REAL},
+      </if>
+      <if test="discountPrice != null" >
+        #{discountPrice,jdbcType=REAL},
+      </if>
+      <if test="couponSn != null" >
+        #{couponSn,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=INTEGER},
+      </if>
+      <if test="district != null" >
+        #{district,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="roomNumber != null" >
+        #{roomNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="fullAddress != null" >
+        #{fullAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceTime != null" >
+        #{serviceTime,jdbcType=VARCHAR},
+      </if>
+      <if test="editServiceTime != null" >
+        #{editServiceTime,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="tradeNo != null" >
+        #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="ip != null" >
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmTime != null" >
+        #{confirmTime,jdbcType=INTEGER},
+      </if>
+      <if test="cancelTime != null" >
+        #{cancelTime,jdbcType=INTEGER},
+      </if>
+      <if test="notified != null" >
+        #{notified,jdbcType=BIT},
+      </if>
+      <if test="payMethod != null" >
+        #{payMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="payPrice != null" >
+        #{payPrice,jdbcType=REAL},
+      </if>
+      <if test="paidTime != null" >
+        #{paidTime,jdbcType=INTEGER},
+      </if>
+      <if test="startTimeDeleted != null" >
+        #{startTimeDeleted,jdbcType=INTEGER},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=INTEGER},
+      </if>
+      <if test="beginTime != null" >
+        #{beginTime,jdbcType=INTEGER},
+      </if>
+      <if test="beginLongitude != null" >
+        #{beginLongitude,jdbcType=REAL},
+      </if>
+      <if test="beginLatitude != null" >
+        #{beginLatitude,jdbcType=REAL},
+      </if>
+      <if test="endLongitude != null" >
+        #{endLongitude,jdbcType=REAL},
+      </if>
+      <if test="endLatitude != null" >
+        #{endLatitude,jdbcType=REAL},
+      </if>
+      <if test="serviceEndTime != null" >
+        #{serviceEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="projectIds != null" >
+        #{projectIds,jdbcType=VARCHAR},
+      </if>
+      <if test="cashCouponMoney != null" >
+        #{cashCouponMoney,jdbcType=REAL},
+      </if>
+      <if test="memberCashCouponId != null" >
+        #{memberCashCouponId,jdbcType=INTEGER},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="isConfirm != null" >
+        #{isConfirm,jdbcType=INTEGER},
+      </if>
+      <if test="usedMoney != null" >
+        #{usedMoney,jdbcType=REAL},
+      </if>
+      <if test="usedCommission != null" >
+        #{usedCommission,jdbcType=REAL},
+      </if>
+      <if test="smsNotifyCustomerBefore1hour != null" >
+        #{smsNotifyCustomerBefore1hour,jdbcType=BIT},
+      </if>
+      <if test="smsNotifyBeautyshopBefore1hour != null" >
+        #{smsNotifyBeautyshopBefore1hour,jdbcType=BIT},
+      </if>
+      <if test="smsNotifyBeauticianBefore1hour != null" >
+        #{smsNotifyBeauticianBefore1hour,jdbcType=BIT},
+      </if>
+      <if test="isJiesuan != null" >
+        #{isJiesuan,jdbcType=BIT},
+      </if>
+      <if test="jiesuanTime != null" >
+        #{jiesuanTime,jdbcType=INTEGER},
+      </if>
+      <if test="withdrawTime != null" >
+        #{withdrawTime,jdbcType=INTEGER},
+      </if>
+      <if test="activityId != null" >
+        #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="activityLinkTag != null" >
+        #{activityLinkTag,jdbcType=VARCHAR},
+      </if>
+      <if test="activityLinkUrl != null" >
+        #{activityLinkUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="activityDivisiveTag != null" >
+        #{activityDivisiveTag,jdbcType=VARCHAR},
+      </if>
+      <if test="orderbackSendSms != null" >
+        #{orderbackSendSms,jdbcType=BIT},
+      </if>
+      <if test="orderbackSendSmsShop != null" >
+        #{orderbackSendSmsShop,jdbcType=TINYINT},
+      </if>
+      <if test="groupsId != null" >
+        #{groupsId,jdbcType=INTEGER},
+      </if>
+      <if test="groupsMemberId != null" >
+        #{groupsMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="follow != null" >
+        #{follow,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="top.lucius.model.ImOrderExample" resultType="java.lang.Integer" >
+    select count(*) from im_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update im_order
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderSn != null" >
+        order_sn = #{record.orderSn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberId != null" >
+        member_id = #{record.memberId,jdbcType=INTEGER},
+      </if>
+      <if test="record.beauticianId != null" >
+        beautician_id = #{record.beauticianId,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopId != null" >
+        shop_id = #{record.shopId,jdbcType=INTEGER},
+      </if>
+      <if test="record.cashCouponId != null" >
+        cash_coupon_id = #{record.cashCouponId,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null" >
+        mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mealName != null" >
+        meal_name = #{record.mealName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mealId != null" >
+        meal_id = #{record.mealId,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalPrice != null" >
+        total_price = #{record.totalPrice,jdbcType=REAL},
+      </if>
+      <if test="record.discountPrice != null" >
+        discount_price = #{record.discountPrice,jdbcType=REAL},
+      </if>
+      <if test="record.couponSn != null" >
+        coupon_sn = #{record.couponSn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.province != null" >
+        province = #{record.province,jdbcType=INTEGER},
+      </if>
+      <if test="record.city != null" >
+        city = #{record.city,jdbcType=INTEGER},
+      </if>
+      <if test="record.district != null" >
+        district = #{record.district,jdbcType=INTEGER},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roomNumber != null" >
+        room_number = #{record.roomNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fullAddress != null" >
+        full_address = #{record.fullAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceTime != null" >
+        service_time = #{record.serviceTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.editServiceTime != null" >
+        edit_service_time = #{record.editServiceTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.tradeNo != null" >
+        trade_no = #{record.tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addTime != null" >
+        add_time = #{record.addTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.ip != null" >
+        ip = #{record.ip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.confirmTime != null" >
+        confirm_time = #{record.confirmTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.cancelTime != null" >
+        cancel_time = #{record.cancelTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.notified != null" >
+        notified = #{record.notified,jdbcType=BIT},
+      </if>
+      <if test="record.payMethod != null" >
+        pay_method = #{record.payMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payPrice != null" >
+        pay_price = #{record.payPrice,jdbcType=REAL},
+      </if>
+      <if test="record.paidTime != null" >
+        paid_time = #{record.paidTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.startTimeDeleted != null" >
+        start_time_deleted = #{record.startTimeDeleted,jdbcType=INTEGER},
+      </if>
+      <if test="record.endTime != null" >
+        end_time = #{record.endTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.beginTime != null" >
+        begin_time = #{record.beginTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.beginLongitude != null" >
+        begin_longitude = #{record.beginLongitude,jdbcType=REAL},
+      </if>
+      <if test="record.beginLatitude != null" >
+        begin_latitude = #{record.beginLatitude,jdbcType=REAL},
+      </if>
+      <if test="record.endLongitude != null" >
+        end_longitude = #{record.endLongitude,jdbcType=REAL},
+      </if>
+      <if test="record.endLatitude != null" >
+        end_latitude = #{record.endLatitude,jdbcType=REAL},
+      </if>
+      <if test="record.serviceEndTime != null" >
+        service_end_time = #{record.serviceEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectIds != null" >
+        project_ids = #{record.projectIds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cashCouponMoney != null" >
+        cash_coupon_money = #{record.cashCouponMoney,jdbcType=REAL},
+      </if>
+      <if test="record.memberCashCouponId != null" >
+        member_cash_coupon_id = #{record.memberCashCouponId,jdbcType=INTEGER},
+      </if>
+      <if test="record.memo != null" >
+        memo = #{record.memo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isConfirm != null" >
+        is_confirm = #{record.isConfirm,jdbcType=INTEGER},
+      </if>
+      <if test="record.usedMoney != null" >
+        used_money = #{record.usedMoney,jdbcType=REAL},
+      </if>
+      <if test="record.usedCommission != null" >
+        used_commission = #{record.usedCommission,jdbcType=REAL},
+      </if>
+      <if test="record.smsNotifyCustomerBefore1hour != null" >
+        sms_notify_customer_before_1hour = #{record.smsNotifyCustomerBefore1hour,jdbcType=BIT},
+      </if>
+      <if test="record.smsNotifyBeautyshopBefore1hour != null" >
+        sms_notify_beautyshop_before_1hour = #{record.smsNotifyBeautyshopBefore1hour,jdbcType=BIT},
+      </if>
+      <if test="record.smsNotifyBeauticianBefore1hour != null" >
+        sms_notify_beautician_before_1hour = #{record.smsNotifyBeauticianBefore1hour,jdbcType=BIT},
+      </if>
+      <if test="record.isJiesuan != null" >
+        is_jiesuan = #{record.isJiesuan,jdbcType=BIT},
+      </if>
+      <if test="record.jiesuanTime != null" >
+        jiesuan_time = #{record.jiesuanTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.withdrawTime != null" >
+        withdraw_time = #{record.withdrawTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.activityId != null" >
+        activity_id = #{record.activityId,jdbcType=INTEGER},
+      </if>
+      <if test="record.activityLinkTag != null" >
+        activity_link_tag = #{record.activityLinkTag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activityLinkUrl != null" >
+        activity_link_url = #{record.activityLinkUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activityDivisiveTag != null" >
+        activity_divisive_tag = #{record.activityDivisiveTag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderbackSendSms != null" >
+        orderback_send_sms = #{record.orderbackSendSms,jdbcType=BIT},
+      </if>
+      <if test="record.orderbackSendSmsShop != null" >
+        orderback_send_sms_shop = #{record.orderbackSendSmsShop,jdbcType=TINYINT},
+      </if>
+      <if test="record.groupsId != null" >
+        groups_id = #{record.groupsId,jdbcType=INTEGER},
+      </if>
+      <if test="record.groupsMemberId != null" >
+        groups_member_id = #{record.groupsMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="record.follow != null" >
+        follow = #{record.follow,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update im_order
+    set id = #{record.id,jdbcType=INTEGER},
+      order_sn = #{record.orderSn,jdbcType=VARCHAR},
+      member_id = #{record.memberId,jdbcType=INTEGER},
+      beautician_id = #{record.beauticianId,jdbcType=INTEGER},
+      shop_id = #{record.shopId,jdbcType=INTEGER},
+      cash_coupon_id = #{record.cashCouponId,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      mobile = #{record.mobile,jdbcType=VARCHAR},
+      meal_name = #{record.mealName,jdbcType=VARCHAR},
+      meal_id = #{record.mealId,jdbcType=INTEGER},
+      total_price = #{record.totalPrice,jdbcType=REAL},
+      discount_price = #{record.discountPrice,jdbcType=REAL},
+      coupon_sn = #{record.couponSn,jdbcType=VARCHAR},
+      province = #{record.province,jdbcType=INTEGER},
+      city = #{record.city,jdbcType=INTEGER},
+      district = #{record.district,jdbcType=INTEGER},
+      address = #{record.address,jdbcType=VARCHAR},
+      room_number = #{record.roomNumber,jdbcType=VARCHAR},
+      full_address = #{record.fullAddress,jdbcType=VARCHAR},
+      service_time = #{record.serviceTime,jdbcType=VARCHAR},
+      edit_service_time = #{record.editServiceTime,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      trade_no = #{record.tradeNo,jdbcType=VARCHAR},
+      add_time = #{record.addTime,jdbcType=INTEGER},
+      ip = #{record.ip,jdbcType=VARCHAR},
+      confirm_time = #{record.confirmTime,jdbcType=INTEGER},
+      cancel_time = #{record.cancelTime,jdbcType=INTEGER},
+      notified = #{record.notified,jdbcType=BIT},
+      pay_method = #{record.payMethod,jdbcType=VARCHAR},
+      pay_price = #{record.payPrice,jdbcType=REAL},
+      paid_time = #{record.paidTime,jdbcType=INTEGER},
+      start_time_deleted = #{record.startTimeDeleted,jdbcType=INTEGER},
+      end_time = #{record.endTime,jdbcType=INTEGER},
+      begin_time = #{record.beginTime,jdbcType=INTEGER},
+      begin_longitude = #{record.beginLongitude,jdbcType=REAL},
+      begin_latitude = #{record.beginLatitude,jdbcType=REAL},
+      end_longitude = #{record.endLongitude,jdbcType=REAL},
+      end_latitude = #{record.endLatitude,jdbcType=REAL},
+      service_end_time = #{record.serviceEndTime,jdbcType=VARCHAR},
+      project_ids = #{record.projectIds,jdbcType=VARCHAR},
+      cash_coupon_money = #{record.cashCouponMoney,jdbcType=REAL},
+      member_cash_coupon_id = #{record.memberCashCouponId,jdbcType=INTEGER},
+      memo = #{record.memo,jdbcType=VARCHAR},
+      is_confirm = #{record.isConfirm,jdbcType=INTEGER},
+      used_money = #{record.usedMoney,jdbcType=REAL},
+      used_commission = #{record.usedCommission,jdbcType=REAL},
+      sms_notify_customer_before_1hour = #{record.smsNotifyCustomerBefore1hour,jdbcType=BIT},
+      sms_notify_beautyshop_before_1hour = #{record.smsNotifyBeautyshopBefore1hour,jdbcType=BIT},
+      sms_notify_beautician_before_1hour = #{record.smsNotifyBeauticianBefore1hour,jdbcType=BIT},
+      is_jiesuan = #{record.isJiesuan,jdbcType=BIT},
+      jiesuan_time = #{record.jiesuanTime,jdbcType=INTEGER},
+      withdraw_time = #{record.withdrawTime,jdbcType=INTEGER},
+      activity_id = #{record.activityId,jdbcType=INTEGER},
+      activity_link_tag = #{record.activityLinkTag,jdbcType=VARCHAR},
+      activity_link_url = #{record.activityLinkUrl,jdbcType=VARCHAR},
+      activity_divisive_tag = #{record.activityDivisiveTag,jdbcType=VARCHAR},
+      orderback_send_sms = #{record.orderbackSendSms,jdbcType=BIT},
+      orderback_send_sms_shop = #{record.orderbackSendSmsShop,jdbcType=TINYINT},
+      groups_id = #{record.groupsId,jdbcType=INTEGER},
+      groups_member_id = #{record.groupsMemberId,jdbcType=INTEGER},
+      follow = #{record.follow,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="top.lucius.model.ImOrder" >
+    update im_order
+    <set >
+      <if test="orderSn != null" >
+        order_sn = #{orderSn,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="beauticianId != null" >
+        beautician_id = #{beauticianId,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="cashCouponId != null" >
+        cash_coupon_id = #{cashCouponId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="mealName != null" >
+        meal_name = #{mealName,jdbcType=VARCHAR},
+      </if>
+      <if test="mealId != null" >
+        meal_id = #{mealId,jdbcType=INTEGER},
+      </if>
+      <if test="totalPrice != null" >
+        total_price = #{totalPrice,jdbcType=REAL},
+      </if>
+      <if test="discountPrice != null" >
+        discount_price = #{discountPrice,jdbcType=REAL},
+      </if>
+      <if test="couponSn != null" >
+        coupon_sn = #{couponSn,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=INTEGER},
+      </if>
+      <if test="district != null" >
+        district = #{district,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="roomNumber != null" >
+        room_number = #{roomNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="fullAddress != null" >
+        full_address = #{fullAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceTime != null" >
+        service_time = #{serviceTime,jdbcType=VARCHAR},
+      </if>
+      <if test="editServiceTime != null" >
+        edit_service_time = #{editServiceTime,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="tradeNo != null" >
+        trade_no = #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="ip != null" >
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmTime != null" >
+        confirm_time = #{confirmTime,jdbcType=INTEGER},
+      </if>
+      <if test="cancelTime != null" >
+        cancel_time = #{cancelTime,jdbcType=INTEGER},
+      </if>
+      <if test="notified != null" >
+        notified = #{notified,jdbcType=BIT},
+      </if>
+      <if test="payMethod != null" >
+        pay_method = #{payMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="payPrice != null" >
+        pay_price = #{payPrice,jdbcType=REAL},
+      </if>
+      <if test="paidTime != null" >
+        paid_time = #{paidTime,jdbcType=INTEGER},
+      </if>
+      <if test="startTimeDeleted != null" >
+        start_time_deleted = #{startTimeDeleted,jdbcType=INTEGER},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=INTEGER},
+      </if>
+      <if test="beginTime != null" >
+        begin_time = #{beginTime,jdbcType=INTEGER},
+      </if>
+      <if test="beginLongitude != null" >
+        begin_longitude = #{beginLongitude,jdbcType=REAL},
+      </if>
+      <if test="beginLatitude != null" >
+        begin_latitude = #{beginLatitude,jdbcType=REAL},
+      </if>
+      <if test="endLongitude != null" >
+        end_longitude = #{endLongitude,jdbcType=REAL},
+      </if>
+      <if test="endLatitude != null" >
+        end_latitude = #{endLatitude,jdbcType=REAL},
+      </if>
+      <if test="serviceEndTime != null" >
+        service_end_time = #{serviceEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="projectIds != null" >
+        project_ids = #{projectIds,jdbcType=VARCHAR},
+      </if>
+      <if test="cashCouponMoney != null" >
+        cash_coupon_money = #{cashCouponMoney,jdbcType=REAL},
+      </if>
+      <if test="memberCashCouponId != null" >
+        member_cash_coupon_id = #{memberCashCouponId,jdbcType=INTEGER},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="isConfirm != null" >
+        is_confirm = #{isConfirm,jdbcType=INTEGER},
+      </if>
+      <if test="usedMoney != null" >
+        used_money = #{usedMoney,jdbcType=REAL},
+      </if>
+      <if test="usedCommission != null" >
+        used_commission = #{usedCommission,jdbcType=REAL},
+      </if>
+      <if test="smsNotifyCustomerBefore1hour != null" >
+        sms_notify_customer_before_1hour = #{smsNotifyCustomerBefore1hour,jdbcType=BIT},
+      </if>
+      <if test="smsNotifyBeautyshopBefore1hour != null" >
+        sms_notify_beautyshop_before_1hour = #{smsNotifyBeautyshopBefore1hour,jdbcType=BIT},
+      </if>
+      <if test="smsNotifyBeauticianBefore1hour != null" >
+        sms_notify_beautician_before_1hour = #{smsNotifyBeauticianBefore1hour,jdbcType=BIT},
+      </if>
+      <if test="isJiesuan != null" >
+        is_jiesuan = #{isJiesuan,jdbcType=BIT},
+      </if>
+      <if test="jiesuanTime != null" >
+        jiesuan_time = #{jiesuanTime,jdbcType=INTEGER},
+      </if>
+      <if test="withdrawTime != null" >
+        withdraw_time = #{withdrawTime,jdbcType=INTEGER},
+      </if>
+      <if test="activityId != null" >
+        activity_id = #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="activityLinkTag != null" >
+        activity_link_tag = #{activityLinkTag,jdbcType=VARCHAR},
+      </if>
+      <if test="activityLinkUrl != null" >
+        activity_link_url = #{activityLinkUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="activityDivisiveTag != null" >
+        activity_divisive_tag = #{activityDivisiveTag,jdbcType=VARCHAR},
+      </if>
+      <if test="orderbackSendSms != null" >
+        orderback_send_sms = #{orderbackSendSms,jdbcType=BIT},
+      </if>
+      <if test="orderbackSendSmsShop != null" >
+        orderback_send_sms_shop = #{orderbackSendSmsShop,jdbcType=TINYINT},
+      </if>
+      <if test="groupsId != null" >
+        groups_id = #{groupsId,jdbcType=INTEGER},
+      </if>
+      <if test="groupsMemberId != null" >
+        groups_member_id = #{groupsMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="follow != null" >
+        follow = #{follow,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.lucius.model.ImOrder" >
+    update im_order
+    set order_sn = #{orderSn,jdbcType=VARCHAR},
+      member_id = #{memberId,jdbcType=INTEGER},
+      beautician_id = #{beauticianId,jdbcType=INTEGER},
+      shop_id = #{shopId,jdbcType=INTEGER},
+      cash_coupon_id = #{cashCouponId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      meal_name = #{mealName,jdbcType=VARCHAR},
+      meal_id = #{mealId,jdbcType=INTEGER},
+      total_price = #{totalPrice,jdbcType=REAL},
+      discount_price = #{discountPrice,jdbcType=REAL},
+      coupon_sn = #{couponSn,jdbcType=VARCHAR},
+      province = #{province,jdbcType=INTEGER},
+      city = #{city,jdbcType=INTEGER},
+      district = #{district,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      room_number = #{roomNumber,jdbcType=VARCHAR},
+      full_address = #{fullAddress,jdbcType=VARCHAR},
+      service_time = #{serviceTime,jdbcType=VARCHAR},
+      edit_service_time = #{editServiceTime,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      trade_no = #{tradeNo,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=INTEGER},
+      ip = #{ip,jdbcType=VARCHAR},
+      confirm_time = #{confirmTime,jdbcType=INTEGER},
+      cancel_time = #{cancelTime,jdbcType=INTEGER},
+      notified = #{notified,jdbcType=BIT},
+      pay_method = #{payMethod,jdbcType=VARCHAR},
+      pay_price = #{payPrice,jdbcType=REAL},
+      paid_time = #{paidTime,jdbcType=INTEGER},
+      start_time_deleted = #{startTimeDeleted,jdbcType=INTEGER},
+      end_time = #{endTime,jdbcType=INTEGER},
+      begin_time = #{beginTime,jdbcType=INTEGER},
+      begin_longitude = #{beginLongitude,jdbcType=REAL},
+      begin_latitude = #{beginLatitude,jdbcType=REAL},
+      end_longitude = #{endLongitude,jdbcType=REAL},
+      end_latitude = #{endLatitude,jdbcType=REAL},
+      service_end_time = #{serviceEndTime,jdbcType=VARCHAR},
+      project_ids = #{projectIds,jdbcType=VARCHAR},
+      cash_coupon_money = #{cashCouponMoney,jdbcType=REAL},
+      member_cash_coupon_id = #{memberCashCouponId,jdbcType=INTEGER},
+      memo = #{memo,jdbcType=VARCHAR},
+      is_confirm = #{isConfirm,jdbcType=INTEGER},
+      used_money = #{usedMoney,jdbcType=REAL},
+      used_commission = #{usedCommission,jdbcType=REAL},
+      sms_notify_customer_before_1hour = #{smsNotifyCustomerBefore1hour,jdbcType=BIT},
+      sms_notify_beautyshop_before_1hour = #{smsNotifyBeautyshopBefore1hour,jdbcType=BIT},
+      sms_notify_beautician_before_1hour = #{smsNotifyBeauticianBefore1hour,jdbcType=BIT},
+      is_jiesuan = #{isJiesuan,jdbcType=BIT},
+      jiesuan_time = #{jiesuanTime,jdbcType=INTEGER},
+      withdraw_time = #{withdrawTime,jdbcType=INTEGER},
+      activity_id = #{activityId,jdbcType=INTEGER},
+      activity_link_tag = #{activityLinkTag,jdbcType=VARCHAR},
+      activity_link_url = #{activityLinkUrl,jdbcType=VARCHAR},
+      activity_divisive_tag = #{activityDivisiveTag,jdbcType=VARCHAR},
+      orderback_send_sms = #{orderbackSendSms,jdbcType=BIT},
+      orderback_send_sms_shop = #{orderbackSendSmsShop,jdbcType=TINYINT},
+      groups_id = #{groupsId,jdbcType=INTEGER},
+      groups_member_id = #{groupsMemberId,jdbcType=INTEGER},
+      follow = #{follow,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
